@@ -9,15 +9,29 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Inphade | Premium Digital Assets for Business Growth",
-  description:
-    "Premium websites engineered for growth, conversions, and long-term business value.",
+  title: "Inphade",
+  description: "Modern websites for ambitious businesses.",
   metadataBase: new URL("https://inphade.com"),
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png"
+  },
   openGraph: {
-    title: "Inphade | We Build Digital Assets, Not Just Websites",
-    description:
-      "Premium websites engineered for growth, conversions, and long-term business value.",
-    type: "website"
+    title: "Inphade",
+    description: "Modern websites for ambitious businesses.",
+    type: "website",
+    images: [
+      {
+        url: "/brand/inphade-logo.png",
+        width: 1024,
+        height: 1024,
+        alt: "Inphade logo"
+      }
+    ]
+  },
+  other: {
+    "og:logo": "/brand/inphade-logo.png"
   }
 };
 

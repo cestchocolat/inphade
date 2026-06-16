@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import {
@@ -154,6 +155,7 @@ export default function Home() {
     description:
       "We design and develop high-performance websites that elevate brands, generate leads, and create long-term business value.",
     areaServed: "Global",
+    logo: "https://inphade.com/brand/inphade-logo.png",
     serviceType: "Web design, web development, SEO, conversion optimization, AI automation"
   };
 
@@ -164,7 +166,17 @@ export default function Home() {
         <div className="mesh absolute inset-0" />
         <div className="grid-surface absolute inset-0 opacity-70" />
         <nav className="glass relative z-20 mx-auto flex max-w-7xl items-center justify-between rounded-full px-4 py-3">
-          <a href="#" className="text-lg font-semibold text-ink">Inphade</a>
+          <a href="#" className="flex items-center gap-3" aria-label="Inphade home">
+            <Image
+              src="/brand/inphade-logo.png"
+              alt="Inphade"
+              width={52}
+              height={52}
+              priority
+              className="h-10 w-10 rounded-md object-contain sm:h-12 sm:w-12"
+            />
+            <span className="text-xl font-semibold tracking-normal text-brandNavy sm:text-2xl">Inphade</span>
+          </a>
           <div className="hidden items-center gap-7 text-sm font-medium text-muted md:flex">
             <a href="#work" className="hover:text-ink">Work</a>
             <a href="#services" className="hover:text-ink">Services</a>
@@ -186,7 +198,12 @@ export default function Home() {
             We design and develop high-performance websites that elevate brands, generate leads, and create long-term business value.
           </motion.p>
           <motion.div initial={false} className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-            <a href="#contact" className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 font-semibold text-white shadow-glow">
+            <a
+              href="https://calendly.com/hello-inphade/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 font-semibold text-white shadow-glow"
+            >
               Book a Discovery Call <ArrowRight size={18} />
             </a>
             <a href="#work" className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white px-6 py-4 font-semibold text-ink shadow-sm">
@@ -300,7 +317,13 @@ export default function Home() {
             <h2 className="text-4xl font-semibold sm:text-6xl">Ready to Build Your Next Digital Asset?</h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">Let's create a website that works for your business 24/7.</p>
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href="mailto:hello@inphade.com" className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-4 font-semibold text-ink">
+              <a
+                href="https://calendly.com/hello-inphade/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Schedule a 30-minute call with Inphade"
+                className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-4 font-semibold text-ink"
+              >
                 Schedule a Call <Globe2 size={18} />
               </a>
               <a href="mailto:hello@inphade.com?subject=Free Proposal" className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-4 font-semibold text-white">
@@ -315,7 +338,15 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-10 md:grid-cols-[1.25fr_0.75fr_0.75fr_0.75fr]">
             <div>
-              <a href="#" className="text-xl font-semibold tracking-normal text-white">INPHADE</a>
+              <a href="#" className="inline-flex items-center" aria-label="Inphade home">
+                <Image
+                  src="/brand/inphade-logo.png"
+                  alt="Inphade"
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 rounded-lg object-contain"
+                />
+              </a>
               <p className="mt-4 max-w-md leading-7 text-slate-300">
                 Premium websites, digital experiences, and growth-focused solutions for modern businesses.
               </p>
