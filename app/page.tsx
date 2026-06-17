@@ -5,17 +5,19 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
-  BarChart3,
-  Bot,
+  Briefcase,
+  Building2,
   Check,
-  Code2,
   Globe2,
+  HeartPulse,
+  Hotel,
   Layers3,
   Palette,
   Search,
   ShieldCheck,
   Sparkles,
   Target,
+  Utensils,
   Wrench
 } from "lucide-react";
 
@@ -47,55 +49,81 @@ const conceptImages: Record<string, string> = {
 
 const services = [
   [
-    "Website Design",
+    "Website Design & Development",
     Palette,
-    "Premium UI/UX experiences crafted to elevate your brand and maximize engagement."
+    "Custom business websites, landing pages, and portfolio websites built to establish credibility, generate leads, and support long-term growth."
   ],
   [
-    "Web Development",
-    Code2,
-    "Fast, scalable websites built with modern technologies and best practices."
-  ],
-  [
-    "SEO Optimization",
-    Search,
-    "Improve search visibility, rankings, and long-term organic growth."
-  ],
-  [
-    "Conversion Optimization",
+    "Website Optimization",
     Target,
-    "Transform website traffic into qualified leads and paying customers."
+    "Improve user experience, content structure, trust elements, and conversion pathways to turn more visitors into customers."
   ],
   [
-    "Branding",
-    Sparkles,
-    "Build a distinctive visual identity that creates trust and recognition."
+    "SEO Foundation",
+    Search,
+    "Technical SEO setup, sitemap configuration, metadata optimization, and search visibility improvements to help your business get discovered online."
   ],
   [
-    "AI Automation",
-    Bot,
-    "Automate repetitive workflows and improve operational efficiency."
-  ],
-  [
-    "Website Maintenance",
+    "Ongoing Support",
     Wrench,
-    "Reliable updates, security monitoring, and ongoing technical support."
+    "Monthly updates, content changes, technical monitoring, and maintenance to keep your website performing at its best."
+  ]
+] as const;
+
+const industries = [
+  [
+    "Real Estate",
+    Building2,
+    "Property agencies, brokers, and developers looking to showcase listings and generate qualified leads."
   ],
   [
-    "Analytics & Tracking",
-    BarChart3,
-    "Measure performance with actionable insights and data-driven reporting."
+    "Clinics & Healthcare",
+    HeartPulse,
+    "Medical, dental, and wellness businesses that need credibility and a professional online presence."
+  ],
+  [
+    "Hotels & Hospitality",
+    Hotel,
+    "Hotels, resorts, and hospitality brands focused on bookings and guest experience."
+  ],
+  [
+    "Restaurants & Cafes",
+    Utensils,
+    "Food and beverage businesses looking to attract customers and strengthen their brand."
+  ],
+  [
+    "Professional Services",
+    Briefcase,
+    "Consultants, law firms, financial advisors, and service-based businesses."
   ]
 ] as const;
 
 const process = [
-  ["01", "Discovery", "Learn about your business, audience, competitors, and goals before making any decisions."],
-  ["02", "Planning", "Define the website structure, content strategy, user journey, and conversion goals."],
-  ["03", "Design", "Create a clean, modern interface that reflects your brand and builds trust."],
-  ["04", "Development", "Build a fast, responsive, SEO-ready website using modern web technologies."],
-  ["05", "Launch", "Test, optimize, and deploy with analytics, performance checks, and quality assurance."],
-  ["06", "Growth", "Improve content, SEO, user experience, and conversions over time."]
-];
+  [
+    "Discovery",
+    "Learn about your business, audience, competitors, and goals before making any decisions."
+  ],
+  [
+    "Planning",
+    "Define the website structure, content strategy, user journey, and conversion goals."
+  ],
+  [
+    "Design",
+    "Create a clean, modern interface that reflects your brand and builds trust."
+  ],
+  [
+    "Development",
+    "Build a fast, responsive, SEO-ready website using modern web technologies."
+  ],
+  [
+    "Launch",
+    "Test, optimize, and deploy with analytics, performance checks, and quality assurance."
+  ],
+  [
+    "Growth",
+    "Improve content, SEO, user experience, and conversions over time."
+  ]
+] as const;
 
 function Counter({ value, suffix = "", prefix = "" }: { value: number; suffix?: string; prefix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -165,6 +193,7 @@ export default function Home() {
       <section className="relative overflow-hidden px-5 pb-20 pt-6 sm:px-8">
         <div className="mesh absolute inset-0" />
         <div className="grid-surface absolute inset-0 opacity-70" />
+        <div className="pointer-events-none absolute inset-x-0 top-24 mx-auto h-[32rem] max-w-5xl bg-[radial-gradient(circle_at_center,rgba(31,122,83,0.08),transparent_70%)]" />
         <nav className="glass relative z-20 mx-auto flex max-w-7xl items-center justify-between rounded-full px-4 py-3">
           <a href="#" className="flex items-center gap-3" aria-label="Inphade home">
             <Image
@@ -237,7 +266,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="work" className="bg-soft py-24 sm:py-32">
+      <section id="work" className="bg-[#F7FAF8] py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <p className="mb-3 text-sm font-semibold uppercase text-accent">Website Showcase Gallery</p>
           <h2 className="max-w-3xl text-4xl font-semibold text-brandNavy sm:text-5xl">Explore Website Concepts</h2>
@@ -256,54 +285,121 @@ export default function Home() {
 
       <section
         id="services"
-        className="bg-[linear-gradient(180deg,rgba(23,108,75,0.05)_0%,rgba(255,255,255,1)_50%)] py-24 sm:py-32"
+        className="relative overflow-hidden bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FFFC_52%,#F2FBF7_100%)] py-24 sm:py-32"
       >
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-[#A7F3D0]/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 -right-28 h-[28rem] w-[28rem] rounded-full bg-[#D1FAE5]/30 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <div className="relative mb-12 max-w-3xl">
             <div className="pointer-events-none absolute -left-8 -top-8 h-32 w-72 rounded-full bg-[rgba(23,108,75,0.12)] blur-3xl" />
             <p className="mb-3 text-sm font-semibold uppercase text-accent">Services</p>
-            <h2 className="services-heading-gradient relative text-4xl font-semibold sm:text-5xl">Everything your business needs to grow online.</h2>
+            <h2 className="services-heading-gradient relative text-3xl font-semibold sm:text-4xl">Everything your business needs to grow online.</h2>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-x-12 gap-y-0 border-y border-line/80 md:grid-cols-2">
             {services.map(([service, Icon, description]) => (
               <motion.div
                 key={service}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.24, ease: "easeOut" }}
-                className="relative overflow-hidden rounded-lg border border-[rgba(7,21,56,0.08)] bg-white p-6 shadow-[0_10px_26px_rgba(7,21,56,0.04)] transition-shadow duration-300 hover:shadow-[0_20px_40px_rgba(7,21,56,0.08)]"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="group relative py-10 transition duration-300 md:border-b md:border-line/80 md:[&:nth-last-child(-n+2)]:border-b-0"
               >
-                <div className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#176C4B,#245F48)]" />
-                <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-md bg-[linear-gradient(135deg,#176C4B,#245F48)] text-white shadow-[0_12px_28px_rgba(23,108,75,0.24)] ring-1 ring-white/70">
-                  <Icon size={26} strokeWidth={1.9} />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#A4D0BE]/70 to-transparent md:hidden" />
+                <div className="flex gap-6">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-[#E8F5EE] text-accent shadow-[0_10px_30px_rgba(23,108,75,0.08)] transition duration-300 group-hover:bg-[#DCEFE6] group-hover:shadow-[0_14px_36px_rgba(23,108,75,0.12)]">
+                    <Icon size={28} strokeWidth={1.8} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold text-ink">{service}</h3>
+                    <p className="mt-4 max-w-xl leading-7 text-muted">{description}</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-ink">{service}</h3>
-                <p className="mt-4 leading-7 text-muted">{description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="process" className="bg-soft py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <p className="mb-3 text-sm font-semibold uppercase text-accent">Process</p>
-          <h2 className="max-w-3xl text-4xl font-semibold text-brandNavy sm:text-5xl">How we build great websites.</h2>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
+      <section id="process" className="relative overflow-hidden bg-ink py-28 sm:py-36">
+        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] [background-size:44px_44px]" />
+
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+          <p className="mb-3 text-sm font-semibold uppercase text-[#A7F3D0]">Process</p>
+          <h2 className="max-w-3xl text-4xl font-semibold text-white sm:text-5xl">How we build great websites.</h2>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
             From strategy and design to launch and optimization, every project follows a clear process built for speed, clarity, and results.
           </p>
-          <div className="mt-14 grid gap-4 lg:grid-cols-6">
-            {process.map(([number, title, text], index) => (
+
+          <div className="relative mt-20 hidden min-h-[520px] lg:block">
+            <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/35 to-transparent" />
+            <div className="grid grid-cols-6 gap-4">
+              {process.map(([title, text], index) => {
+                const isTop = index % 2 === 0;
+                return (
+                  <div key={title} className="relative min-h-[520px]">
+                    <motion.div
+                      whileHover={{ y: isTop ? -6 : 6 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className={`absolute left-0 right-0 ${isTop ? "bottom-[calc(50%+4.75rem)]" : "top-[calc(50%+4.75rem)]"}`}
+                    >
+                      <div className="rounded-lg border border-white/8 bg-white/[0.045] p-5 shadow-[0_18px_54px_rgba(0,0,0,0.16)] backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-white/[0.065]">
+                        <div className="mb-3 text-base font-semibold text-[#A7F3D0]">{title}</div>
+                        <p className="text-sm leading-6 text-slate-300">{text}</p>
+                      </div>
+                    </motion.div>
+
+                    <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
+                      <div className="h-3 w-3 rounded-full border border-[#A7F3D0]/70 bg-[#A7F3D0]" />
+                      <div className={`h-16 w-px bg-gradient-to-b ${isTop ? "order-first mb-4 from-transparent to-white/25" : "mt-4 from-white/25 to-transparent"}`} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="relative mt-14 grid gap-5 lg:hidden">
+            <div className="absolute bottom-8 left-6 top-8 w-px bg-gradient-to-b from-white/35 via-white/20 to-transparent" />
+            {process.map(([title, text]) => (
               <motion.div
                 key={title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="flex h-full flex-col rounded-lg border border-line bg-white p-4 shadow-sm"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="relative grid grid-cols-[2rem_1fr] gap-5"
               >
-                <div className="mb-6 text-sm font-semibold text-accent">{number}</div>
-                <h3 className="text-xl font-semibold text-ink">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted">{text}</p>
+                <div className="relative z-10 mt-2 h-3 w-3 rounded-full border border-[#A7F3D0]/70 bg-[#A7F3D0]" />
+                <div className="rounded-lg border border-white/8 bg-white/[0.045] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.14)] backdrop-blur-md">
+                  <h3 className="text-lg font-semibold text-[#A7F3D0]">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#F2F8F5] py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="mb-12 max-w-3xl">
+            <p className="mb-3 text-sm font-semibold uppercase text-accent">Who We Help</p>
+            <h2 className="text-4xl font-semibold text-brandNavy sm:text-5xl">Industries We Work With</h2>
+            <p className="mt-5 text-lg leading-8 text-muted">
+              We help businesses build professional websites that strengthen their brand and generate more opportunities online.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {industries.map(([industry, Icon, description]) => (
+              <motion.div
+                key={industry}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="relative overflow-hidden rounded-lg border border-line bg-white p-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition duration-300 hover:border-[#1F7A53]/35 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)]"
+              >
+                <div className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#176C4B,#245F48)]" />
+                <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-lg bg-[#E8F5EE] text-[#1F7A53]">
+                  <Icon size={30} strokeWidth={1.8} />
+                </div>
+                <h3 className="text-xl font-semibold text-ink">{industry}</h3>
+                <p className="mt-4 text-sm leading-6 text-muted">{description}</p>
               </motion.div>
             ))}
           </div>
@@ -314,17 +410,19 @@ export default function Home() {
         <div className="mx-auto max-w-7xl overflow-hidden rounded-lg bg-ink p-8 text-center text-white shadow-premium sm:p-16">
           <div className="mx-auto max-w-4xl">
             <Layers3 className="mx-auto mb-8 text-[#8FBFA8]" size={38} />
-            <h2 className="text-4xl font-semibold sm:text-6xl">Ready to Build Your Next Digital Asset?</h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">Let's create a website that works for your business 24/7.</p>
+            <h2 className="text-4xl font-semibold sm:text-6xl">Ready For A Website That Helps Your Business Grow?</h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+              We build websites that create trust, generate leads, and support long-term business growth.
+            </p>
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
               <a
                 href="https://calendly.com/hello-inphade/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Schedule a 30-minute call with Inphade"
+                aria-label="Book a 30-minute discovery call with Inphade"
                 className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-4 font-semibold text-ink"
               >
-                Schedule a Call <Globe2 size={18} />
+                Book a Discovery Call <Globe2 size={18} />
               </a>
               <a href="mailto:hello@inphade.com?subject=Free Proposal" className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-4 font-semibold text-white">
                 Get a Free Proposal <ShieldCheck size={18} />
@@ -362,10 +460,10 @@ export default function Home() {
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">Services</h3>
               <div className="mt-4 grid gap-3 text-slate-300">
-                <a href="#services" className="transition hover:text-white">Website Design</a>
-                <a href="#services" className="transition hover:text-white">Website Development</a>
-                <a href="#services" className="transition hover:text-white">SEO</a>
-                <a href="#services" className="transition hover:text-white">Conversion Optimization</a>
+                <a href="#services" className="transition hover:text-white">Website Design & Development</a>
+                <a href="#services" className="transition hover:text-white">Website Optimization</a>
+                <a href="#services" className="transition hover:text-white">SEO Foundation</a>
+                <a href="#services" className="transition hover:text-white">Ongoing Support</a>
               </div>
             </div>
 
