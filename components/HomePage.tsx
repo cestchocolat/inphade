@@ -204,7 +204,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
             >
               <div className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,rgba(164,208,190,0),#A4D0BE,rgba(164,208,190,0))]" />
               <div className="text-[2.65rem] font-semibold leading-none text-ink">
-                {stat.type === "counter" && <Counter value={stat.value} suffix={stat.suffix} />}
+                {stat.type === "counter" && typeof stat.value === "number" && <Counter value={stat.value} suffix={stat.suffix} />}
                 {stat.type === "infinity" && <span className="infinity-drift inline-block text-[#176C4B]">∞</span>}
                 {stat.type === "check" && <Check className="mx-auto text-[#A4D0BE]" size={40} strokeWidth={2.1} />}
               </div>
