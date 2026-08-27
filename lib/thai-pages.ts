@@ -37,82 +37,70 @@ export const thaiPages: Partial<Record<RouteSlug, LandingPage>> = {
       { label: "ออกแบบเว็บไซต์", href: "/th/web-design-bangkok" },
       { label: "พัฒนาเว็บไซต์", href: "/th/website-development-bangkok" },
       { label: "รีดีไซน์เว็บไซต์", href: "/th/website-redesign-bangkok" },
-      { label: "ดูแนวคิดผลงาน", href: "/th/portfolio" }
+      { label: "ดูโปรเจกต์", href: "/th/project" }
     ]
   },
-  portfolio: {
-    slug: "portfolio",
-    kind: "portfolio",
-    title: "Selected Website Concepts | Inphade",
-    description: "ดูแนวคิดการออกแบบเว็บไซต์ของ Inphade สำหรับอสังหาริมทรัพย์ คลินิก โรงแรม ร้านอาหาร SaaS และธุรกิจบริการ",
-    h1: "แนวคิดเว็บไซต์ที่คัดสรร",
-    eyebrow: "ผลงาน",
-    intro: "ตัวอย่างแนวคิดที่แสดงให้เห็นว่า กลยุทธ์ ดีไซน์ และการพัฒนาเว็บไซต์สามารถทำงานร่วมกันได้อย่างไรในแต่ละอุตสาหกรรม เส้นทางผู้ใช้ การวาง Positioning และเป้าหมาย Conversion แนวคิดเหล่านี้ใช้เพื่อการสำรวจด้านดีไซน์",
-    cta: "มีโปรเจกต์ในใจหรือไม่?",
-    ctaNote: "เล่าบริบทธุรกิจของคุณ แล้วเราจะช่วยวางทิศทางเว็บไซต์ให้เฉพาะเจาะจง น่าเชื่อถือ และพร้อมต่อการติดต่อจากลูกค้า",
+  project: {
+    slug: "project",
+    kind: "project",
+    title: "โปรเจกต์เว็บไซต์และอุตสาหกรรม | Inphade",
+    description: "ดูประเภทเว็บไซต์ที่ Inphade สามารถออกแบบและพัฒนาได้สำหรับอสังหาริมทรัพย์ เว็บไซต์องค์กร ธุรกิจบริการ คลินิก โรงแรม ร้านอาหาร สตาร์ทอัพ และโปรเจกต์ Custom",
+    h1: "เว็บไซต์ที่สร้างขึ้นเพื่อธุรกิจของคุณ",
+    eyebrow: "โปรเจกต์",
+    intro: "เราออกแบบและพัฒนาเว็บไซต์ที่ช่วยให้ธุรกิจสื่อสารได้ชัดเจน สร้างความน่าเชื่อถือ และสร้างโอกาสทางธุรกิจ",
+    cta: "เริ่มโปรเจกต์",
+    ctaNote: "บอกเราว่าคุณกำลังสร้างอะไร แล้วเราจะช่วยกำหนดทิศทางที่เหมาะสม",
     sections: [
       {
-        title: "Luxury Real Estate",
-        body: "การวางภาพลักษณ์ระดับพรีเมียม การนำเสนออสังหาริมทรัพย์มูลค่าสูง และเส้นทางสร้าง enquiry ที่มีคุณภาพ",
-        items: ["การค้นหาทรัพย์สิน", "การเล่าเรื่องโครงการ", "Lead conversion", "Mobile-first browsing"]
+        title: "อสังหาริมทรัพย์",
+        body: "นำเสนอทรัพย์สิน ค้นหาได้ง่าย และต่อยอดสู่การติดต่อ"
       },
       {
-        title: "Clinic & Medical",
-        body: "ความน่าเชื่อถือ ความชัดเจน และเส้นทางจากการดูบริการไปสู่การสอบถามหรือนัดหมายที่ไม่ซับซ้อน",
-        items: ["ลำดับบริการ", "ความน่าเชื่อถือของผู้ให้บริการ", "ข้อมูลสถานที่", "เส้นทางนัดหมาย"]
+        title: "เว็บไซต์บริษัทและองค์กร",
+        body: "วางตำแหน่งบริษัท บริการ และความน่าเชื่อถือให้ชัดเจน"
       },
       {
-        title: "Hotel & Hospitality",
-        body: "ประสบการณ์แบรนด์ การเล่าเรื่องปลายทาง และการพาผู้เข้าชมไปสู่ความตั้งใจในการจองโดยตรง",
-        items: ["การนำเสนอห้องพัก", "ข้อเสนอ", "Guest journey", "Booking pathway"]
+        title: "ธุรกิจบริการระดับมืออาชีพ",
+        body: "สื่อสารความเชี่ยวชาญสำหรับธุรกิจที่ต้องใช้ความไว้วางใจ"
       },
       {
-        title: "Restaurant & Cafe",
-        body: "การตัดสินใจบนมือถือที่รวดเร็ว ผ่านเมนู ข้อมูลสถานที่ และช่องทางจองหรือติดต่อที่ชัดเจน",
-        items: ["โครงสร้างเมนู", "Local discovery", "Mobile UX", "Reservation intent"]
+        title: "คลินิกและเวลเนส",
+        body: "ทำให้บริการเข้าใจง่าย น่าเชื่อถือ และพร้อมต่อการนัดหมาย"
       },
       {
-        title: "Modern Startup / SaaS",
-        body: "การสื่อสาร Value proposition ให้เข้าใจง่าย อธิบายผลิตภัณฑ์ชัดเจน และนำไปสู่ Conversion",
-        items: ["Product clarity", "Feature communication", "Trust signals", "Demo หรือ enquiry flow"]
+        title: "โรงแรมและธุรกิจบริการ",
+        body: "ถ่ายทอดประสบการณ์ สถานที่ และเส้นทางสู่การจอง"
       },
       {
-        title: "Professional Services / Finance",
-        body: "ความน่าเชื่อถือ Authority และการสื่อสารบริการอย่างเป็นระบบสำหรับธุรกิจที่ขายความเชี่ยวชาญ",
-        items: ["Expert positioning", "Service architecture", "Consultation journey", "Content clarity"]
+        title: "ร้านอาหารและ F&B",
+        body: "จัดเมนู สาขา และการจองให้อ่านง่ายบนทุกอุปกรณ์"
+      },
+      {
+        title: "สตาร์ทอัพและเทคโนโลยี",
+        body: "อธิบายผลิตภัณฑ์และคุณค่าของบริการให้เข้าใจเร็ว"
+      },
+      {
+        title: "เว็บไซต์และโปรเจกต์แบบ Custom",
+        body: "ออกแบบอินเทอร์เฟซและฟังก์ชันเฉพาะตาม workflow ของโปรเจกต์"
       }
     ],
     links: [
       { label: "เว็บไซต์อสังหาริมทรัพย์", href: "/th/real-estate-web-design" },
-      { label: "เว็บไซต์โรงแรม", href: "/th/hotel-web-design" },
       { label: "ติดต่อ Inphade", href: "/th/contact" }
     ]
   },
   contact: {
     slug: "contact",
     kind: "contact",
-    title: "ติดต่อ Inphade | ขอใบเสนอราคาเว็บไซต์",
+    title: "Start a Project | ติดต่อ Inphade",
     description: "ติดต่อ Inphade เพื่อคุยเรื่องเว็บไซต์ธุรกิจ การรีดีไซน์ หรือการพัฒนาเว็บไซต์ในกรุงเทพ ประเทศไทย และต่างประเทศ",
-    h1: "ขอใบเสนอราคาเว็บไซต์",
+    h1: "เริ่มโปรเจกต์",
     eyebrow: "ติดต่อเรา",
-    intro: "ส่งรายละเอียดเป้าหมายเว็บไซต์ของคุณ แล้ว Inphade จะช่วยแนะนำแนวทางการออกแบบ พัฒนา เปิดตัว และปรับปรุงเว็บไซต์ให้เหมาะกับธุรกิจ",
-    cta: "เริ่มต้นคุยโปรเจกต์",
-    ctaNote: "สามารถส่งอีเมลมาที่ hello@inphade.com หรือคุยผ่าน WhatsApp ได้เช่นกัน",
-    sections: [
-      {
-        title: "ข้อมูลที่ช่วยให้เราแนะนำได้ดีขึ้น",
-        body: "รายละเอียดที่มีประโยชน์คือ ประเภทธุรกิจ เว็บไซต์เดิมถ้ามี เป้าหมายหลัก ระยะเวลาที่ต้องการ และฟังก์ชันสำคัญที่จำเป็น"
-      },
-      {
-        title: "โปรเจกต์ที่เหมาะกับ Inphade",
-        body: "เราเหมาะกับธุรกิจที่ต้องการเว็บไซต์พรีเมียม โหลดเร็ว และมีเส้นทาง Conversion ชัดเจน มากกว่าเว็บไซต์เทมเพลตทั่วไป"
-      }
-    ],
-    links: [
-      { label: "ออกแบบเว็บไซต์", href: "/th/web-design-bangkok" },
-      { label: "พัฒนาเว็บไซต์", href: "/th/website-development-bangkok" },
-      { label: "รีดีไซน์เว็บไซต์", href: "/th/website-redesign-bangkok" }
-    ]
+    intro: "บอกเราว่าคุณกำลังสร้างอะไร แล้วเราจะช่วยกำหนดทิศทางที่เหมาะสม",
+    cta: "ส่งรายละเอียดโปรเจกต์",
+    ctaNote: "Web Design · Development · Redesign · Custom Builds",
+    sections: [],
+    links: []
   },
   about: {
     slug: "about",
@@ -261,7 +249,7 @@ export const thaiPages: Partial<Record<RouteSlug, LandingPage>> = {
       { label: "ออกแบบเว็บไซต์", href: "/th/web-design-bangkok" },
       { label: "พัฒนาเว็บไซต์", href: "/th/website-development-bangkok" },
       { label: "เว็บไซต์บริษัท", href: "/th/company-website" },
-      { label: "ผลงาน", href: "/th#work" }
+      { label: "โปรเจกต์", href: "/th/project" }
     ]
   },
   "company-website": {

@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 import { localizePath } from "@/lib/routes";
 import type { Locale } from "@/lib/routes";
 import type { Dictionary } from "@/lib/i18n";
@@ -57,6 +59,33 @@ const thaiIndustryLinks = [
   "/th/professional-services-web-design"
 ] as const;
 
+function Counter({ value, suffix = "", prefix = "" }: { value: number; suffix?: string; prefix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    let frame = 0;
+    const total = 72;
+    const id = window.setInterval(() => {
+      frame += 1;
+      const eased = 1 - Math.pow(1 - frame / total, 3);
+      setCount(Math.round(value * eased));
+      if (frame >= total) window.clearInterval(id);
+    }, 18);
+    return () => window.clearInterval(id);
+  }, [inView, value]);
+
+  return (
+    <span ref={ref}>
+      {prefix}
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
 function track(event: string) {
   const win = window as Window & { dataLayer?: Array<Record<string, unknown>>; gtag?: (...args: unknown[]) => void };
   if (win.gtag) {
@@ -106,7 +135,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
   const primaryCtaHref = locale === "th" ? "/th/contact" : whatsAppUrl;
   const primaryCtaTarget = locale === "th" ? undefined : "_blank";
   const primaryCtaRel = locale === "th" ? undefined : "noopener noreferrer";
-  const workHref = localizePath(locale, "portfolio");
+  const workHref = localizePath(locale, "project");
   const getServiceHref = (index: number) => locale === "en" ? englishServiceLinks[index] ?? "/services" : thaiServiceLinks[index] ?? "/th/web-design-bangkok";
   const getIndustryHref = (index: number) => locale === "en" ? englishIndustryLinks[index] ?? "/web-design-bangkok" : thaiIndustryLinks[index] ?? "/th/web-design-bangkok";
   const thaiTypographyClass = locale === "th" ? "[&_h1]:!leading-[1.22] [&_h2]:!leading-[1.22] [&_h3]:!leading-[1.3] [&_p]:!leading-8 sm:[&_p]:!leading-9" : "";
@@ -164,20 +193,22 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
         <div className="pointer-events-none absolute inset-x-8 top-1/2 h-24 -translate-y-1/2 rounded-full bg-[linear-gradient(90deg,rgba(164,208,190,0),rgba(164,208,190,0.24),rgba(164,208,190,0))] blur-3xl" />
         <div className="mx-auto grid max-w-7xl gap-4 px-5 sm:grid-cols-2 sm:px-8 lg:grid-cols-4">
           {[
-            t.stats.websites,
-            t.stats.lighthouse,
-            t.stats.seo,
-            t.stats.performance
-          ].map((label) => (
+            { type: "counter", value: 50, suffix: "+", label: t.stats.websites },
+            { type: "infinity", label: t.stats.lighthouse },
+            { type: "check", label: t.stats.seo },
+            { type: "check", label: t.stats.performance }
+          ].map((stat) => (
             <div
-              key={label}
+              key={stat.label}
               className="relative overflow-hidden rounded-lg border border-[rgba(7,21,56,0.08)] bg-white p-5 text-center shadow-[0_12px_30px_rgba(7,21,56,0.045)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(7,21,56,0.075)]"
             >
               <div className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,rgba(164,208,190,0),#A4D0BE,rgba(164,208,190,0))]" />
               <div className="text-[2.65rem] font-semibold leading-none text-ink">
-                <Check className="mx-auto text-[#A4D0BE]" size={40} strokeWidth={2.1} />
+                {stat.type === "counter" && <Counter value={stat.value} suffix={stat.suffix} />}
+                {stat.type === "infinity" && <span className="infinity-drift inline-block text-[#176C4B]">∞</span>}
+                {stat.type === "check" && <Check className="mx-auto text-[#A4D0BE]" size={40} strokeWidth={2.1} />}
               </div>
-              <p className="mt-2 text-sm font-medium text-muted">{label}</p>
+              <p className="mt-2 text-sm font-medium text-muted">{stat.label}</p>
             </div>
           ))}
         </div>

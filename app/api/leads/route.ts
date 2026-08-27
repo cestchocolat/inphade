@@ -7,8 +7,7 @@ type LeadPayload = {
   email?: string;
   phone?: string;
   currentWebsite?: string;
-  service?: string;
-  budget?: string;
+  project?: string;
   message?: string;
   sourcePage?: string;
   submittedAt?: string;
@@ -47,14 +46,13 @@ export async function POST(request: Request) {
     email: clean(payload.email),
     phone: clean(payload.phone),
     currentWebsite: clean(payload.currentWebsite),
-    service: clean(payload.service),
-    budget: clean(payload.budget),
+    project: clean(payload.project),
     message: clean(payload.message),
     sourcePage: clean(payload.sourcePage),
     submittedAt
   };
 
-  if (!lead.name || !lead.email || !lead.service || !lead.message || !lead.sourcePage || !lead.submittedAt) {
+  if (!lead.name || !lead.email || !lead.project || !lead.message || !lead.sourcePage || !lead.submittedAt) {
     return NextResponse.json({ ok: false, message: "Missing required fields." }, { status: 400 });
   }
 
@@ -62,7 +60,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, message: "Invalid email." }, { status: 400 });
   }
 
-  const duplicateKey = [lead.locale, lead.email.toLowerCase(), lead.service.toLowerCase(), lead.message.toLowerCase()].join("|");
+  const duplicateKey = [lead.locale, lead.email.toLowerCase(), lead.project.toLowerCase(), lead.message.toLowerCase()].join("|");
   const now = Date.now();
   const lastSubmittedAt = recentSubmissions.get(duplicateKey);
 

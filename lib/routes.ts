@@ -4,7 +4,7 @@ export type Locale = (typeof locales)[number];
 
 export const routeSlugs = [
   "services",
-  "portfolio",
+  "project",
   "contact",
   "about",
   "web-design-bangkok",
@@ -22,7 +22,7 @@ export type RouteSlug = (typeof routeSlugs)[number];
 
 export const englishRouteSlugs = [
   "services",
-  "portfolio",
+  "project",
   "contact",
   "about",
   "company-website",
@@ -40,7 +40,7 @@ export type EnglishRouteSlug = (typeof englishRouteSlugs)[number];
 
 export const thaiRouteSlugs = [
   "services",
-  "portfolio",
+  "project",
   "contact",
   "about",
   "web-design-bangkok",
@@ -58,7 +58,7 @@ export type ThaiRouteSlug = (typeof thaiRouteSlugs)[number];
 
 export const thaiHreflangEquivalentSlugs = [
   "services",
-  "portfolio",
+  "project",
   "contact",
   "about",
   "web-design-bangkok",
@@ -77,7 +77,7 @@ export type ThaiHreflangEquivalentSlug = (typeof thaiHreflangEquivalentSlugs)[nu
 export const localizedSlugs: Record<Locale, Record<RouteSlug, string>> = {
   en: {
     services: "services",
-    portfolio: "portfolio",
+    project: "project",
     contact: "contact",
     about: "about",
     "web-design-bangkok": "web-design-bangkok",
@@ -92,7 +92,7 @@ export const localizedSlugs: Record<Locale, Record<RouteSlug, string>> = {
   },
   th: {
     services: "services",
-    portfolio: "portfolio",
+    project: "project",
     contact: "contact",
     about: "about",
     "web-design-bangkok": "web-design-bangkok",

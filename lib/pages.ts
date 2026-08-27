@@ -3,7 +3,7 @@ import { thaiPages } from "@/lib/thai-pages";
 
 export const siteUrl = "https://www.inphade.com";
 
-export type PageKind = "service" | "industry" | "company" | "portfolio" | "contact";
+export type PageKind = "service" | "industry" | "company" | "project" | "contact";
 
 export type LandingPage = {
   slug: RouteSlug;
@@ -63,82 +63,70 @@ export const pages: Record<RouteSlug, LandingPage> = {
       { label: "Web design in Bangkok", href: "/web-design-bangkok" },
       { label: "Website development", href: "/website-development-bangkok" },
       { label: "Website redesign", href: "/website-redesign-bangkok" },
-      { label: "View portfolio concepts", href: "/portfolio" }
+      { label: "View project", href: "/project" }
     ]
   },
-  portfolio: {
-    slug: "portfolio",
-    kind: "portfolio",
-    title: "Selected Website Concepts | Inphade",
-    description: "Explore selected Inphade concept directions across real estate, clinics, hotels, restaurants, SaaS and professional services.",
-    h1: "Selected Website Concepts",
-    eyebrow: "Portfolio",
-    intro: "Selected concept directions exploring how strategy, design and development can come together across different industries, user journeys, positioning and conversion goals. Concept work shown for design exploration.",
-    cta: "Have a project in mind?",
-    ctaNote: "Share the business context and we will help shape a website direction that feels specific, credible and ready to convert.",
+  project: {
+    slug: "project",
+    kind: "project",
+    title: "Website Project & Industries | Inphade",
+    description: "Explore the kinds of websites Inphade can design and build across real estate, corporate, professional services, wellness, hospitality, restaurants, startups and custom digital projects.",
+    h1: "Websites for different industries. Built for results.",
+    eyebrow: "PROJECTS",
+    intro: "We design and develop websites that help businesses communicate clearly, build trust, and generate enquiries.",
+    cta: "Start a Project",
+    ctaNote: "Tell us what you are building and we will help define the right direction.",
     sections: [
       {
-        title: "Luxury Real Estate",
-        body: "Premium positioning, high-value property presentation and qualified enquiry generation.",
-        items: ["Property discovery", "Project storytelling", "Lead conversion", "Mobile-first browsing"]
+        title: "Real Estate",
+        body: "Property discovery, presentation and enquiry flow."
       },
       {
-        title: "Clinic & Medical",
-        body: "Trust, clarity and a frictionless path from service discovery to enquiry or booking.",
-        items: ["Service hierarchy", "Provider credibility", "Location clarity", "Appointment intent"]
+        title: "Company & Corporate",
+        body: "Clear positioning for teams, services and company credibility."
       },
       {
-        title: "Hotel & Hospitality",
-        body: "Brand experience, destination storytelling and direct booking intent.",
-        items: ["Room presentation", "Offer discovery", "Guest journey", "Booking pathway"]
+        title: "Professional Services",
+        body: "Structured expertise for trust-led service businesses."
       },
       {
-        title: "Restaurant & Cafe",
-        body: "Fast mobile decisions supported by menus, location details and a clear reservation or enquiry path.",
-        items: ["Menu structure", "Local discovery", "Mobile UX", "Reservation intent"]
+        title: "Clinics & Wellness",
+        body: "Service clarity, credibility and simple booking intent."
       },
       {
-        title: "Modern Startup / SaaS",
-        body: "Clear value proposition, product understanding and conversion for teams selling something new.",
-        items: ["Product clarity", "Feature communication", "Trust signals", "Demo or enquiry flow"]
+        title: "Hotels & Hospitality",
+        body: "Guest-focused presentation for stays, spaces and enquiries."
       },
       {
-        title: "Professional Services / Finance",
-        body: "Credibility, authority and structured service communication for expert-led businesses.",
-        items: ["Expert positioning", "Service architecture", "Consultation journey", "Content clarity"]
+        title: "Restaurants & F&B",
+        body: "Menus, locations and reservation paths made easy to scan."
+      },
+      {
+        title: "Startups & Technology",
+        body: "Product stories that explain value quickly and clearly."
+      },
+      {
+        title: "Custom Digital Projects",
+        body: "Tailored interfaces and functionality for specific workflows."
       }
     ],
     links: [
       { label: "Real estate websites", href: "/real-estate-web-design" },
-      { label: "Hotel website design", href: "/hotel-web-design" },
       { label: "Contact Inphade", href: "/contact" }
     ]
   },
   contact: {
     slug: "contact",
     kind: "contact",
-    title: "Contact Inphade | Get a Free Website Proposal",
+    title: "Start a Project | Contact Inphade",
     description: "Contact Inphade to discuss a business website, redesign or development project in Bangkok, Thailand or beyond.",
-    h1: "Get a Free Website Proposal",
+    h1: "Start a Project",
     eyebrow: "Contact",
-    intro: "Share a few details about your website goals and Inphade will help you clarify the right approach for design, development, launch and growth.",
-    cta: "Start Your Enquiry",
-    ctaNote: "You can also email hello@inphade.com or start a WhatsApp conversation.",
-    sections: [
-      {
-        title: "What to Include",
-        body: "The most useful enquiries describe the business, current website if one exists, the main goal, preferred timeline and any must-have functionality."
-      },
-      {
-        title: "Good Fit Projects",
-        body: "Inphade is best suited to businesses that want a premium, fast and conversion-focused website rather than a generic template-only presence."
-      }
-    ],
-    links: [
-      { label: "Web design services", href: "/web-design-bangkok" },
-      { label: "Website development", href: "/website-development-bangkok" },
-      { label: "Website redesign", href: "/website-redesign-bangkok" }
-    ]
+    intro: "Tell us what you are building. We will help you define the right direction.",
+    cta: "Send Enquiry",
+    ctaNote: "Web Design · Development · Redesign · Custom Builds",
+    sections: [],
+    links: []
   },
   about: {
     slug: "about",
@@ -211,7 +199,7 @@ export const pages: Record<RouteSlug, LandingPage> = {
       { label: "Website development", href: "/website-development-bangkok" },
       { label: "Website redesign", href: "/website-redesign-bangkok" },
       { label: "Real estate websites", href: "/real-estate-web-design" },
-      { label: "Portfolio", href: "/portfolio" }
+      { label: "Project", href: "/project" }
     ]
   },
   "website-development-bangkok": {
@@ -346,7 +334,7 @@ export const pages: Record<RouteSlug, LandingPage> = {
     links: [
       { label: "Web design Bangkok", href: "/web-design-bangkok" },
       { label: "Website development", href: "/website-development-bangkok" },
-      { label: "View portfolio concepts", href: "/portfolio" }
+      { label: "View project", href: "/project" }
     ]
   },
   "clinic-web-design": {
@@ -408,7 +396,7 @@ export const pages: Record<RouteSlug, LandingPage> = {
     links: [
       { label: "Web design Bangkok", href: "/web-design-bangkok" },
       { label: "Website development", href: "/website-development-bangkok" },
-      { label: "Portfolio concepts", href: "/portfolio" }
+      { label: "Project", href: "/project" }
     ]
   },
   "restaurant-web-design": {

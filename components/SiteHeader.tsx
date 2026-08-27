@@ -29,7 +29,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const ctaHref = isThai ? contactHref : whatsAppUrls.en;
 
   const navItems = [
-    { label: isThai ? "ผลงาน" : "Portfolio", href: localizePath(locale, "portfolio") },
+    { label: isThai ? "โปรเจกต์" : "Project", href: localizePath(locale, "project") },
     { label: isThai ? "บริการ" : "Services", href: localizePath(locale, "services") },
     { label: isThai ? "เกี่ยวกับเรา" : "About", href: localizePath(locale, "about") },
     { label: isThai ? "ขั้นตอน" : "Process", href: isThai ? "/th#process" : "/#process" },

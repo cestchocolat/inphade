@@ -11,7 +11,7 @@ export const dictionaries = {
     },
     nav: {
       home: "Inphade home",
-      work: "Portfolio",
+      work: "Project",
       services: "Services",
       process: "Process",
       contact: "Contact",
@@ -24,13 +24,13 @@ export const dictionaries = {
       subheadline:
         "Inphade designs and develops fast, conversion-focused websites for businesses in Bangkok and across Thailand, combining strategy, design, development and SEO foundations in one build.",
       primary: "Get a Free Website Proposal",
-      secondary: "View Our Work"
+      secondary: "View Project"
     },
     stats: {
-      websites: "SEO-Ready Architecture",
-      lighthouse: "Mobile-First Design",
-      seo: "Lead Generation Focus",
-      performance: "Performance-Focused Development"
+      websites: "Websites Delivered",
+      lighthouse: "Built Beyond the Standard Website",
+      seo: "SEO-Optimized Builds",
+      performance: "Fast Global Performance"
     },
     gallery: {
       label: "Website Showcase Gallery",
@@ -161,7 +161,7 @@ export const dictionaries = {
       company: "Company",
       about: "About",
       process: "Process",
-      portfolio: "Portfolio",
+      portfolio: "Project",
       copyright: "© 2026 Inphade. All rights reserved."
     },
     schema: {
@@ -177,7 +177,7 @@ export const dictionaries = {
     },
     nav: {
       home: "หน้าแรก Inphade",
-      work: "ผลงาน",
+      work: "โปรเจกต์",
       services: "บริการ",
       process: "ขั้นตอนการทำงาน",
       contact: "ติดต่อเรา",
@@ -190,13 +190,13 @@ export const dictionaries = {
       subheadline:
         "เราออกแบบและพัฒนาเว็บไซต์ที่ช่วยสร้างความน่าเชื่อถือ เพิ่มโอกาสในการขาย และยกระดับแบรนด์ของคุณในระยะยาว",
       primary: "ขอใบเสนอราคา",
-      secondary: "ดูผลงาน"
+      secondary: "ดูโปรเจกต์"
     },
     stats: {
-      websites: "โครงสร้างพร้อม SEO",
-      lighthouse: "ออกแบบรองรับมือถือ",
-      seo: "เน้นเส้นทางสร้าง Leads",
-      performance: "พัฒนาโดยคำนึงถึงความเร็ว"
+      websites: "เว็บไซต์ที่ส่งมอบ",
+      lighthouse: "สร้างได้มากกว่าเว็บไซต์แบบมาตรฐาน",
+      seo: "งานที่พร้อมสำหรับ SEO",
+      performance: "ประสิทธิภาพระดับสากล"
     },
     gallery: {
       label: "ตัวอย่างเว็บไซต์",
@@ -347,7 +347,7 @@ export const dictionaries = {
       company: "บริษัท",
       about: "เกี่ยวกับเรา",
       process: "ขั้นตอนการทำงาน",
-      portfolio: "ผลงาน",
+      portfolio: "โปรเจกต์",
       copyright: "© 2026 Inphade สงวนลิขสิทธิ์"
     },
     schema: {

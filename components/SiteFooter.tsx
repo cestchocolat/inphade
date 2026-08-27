@@ -33,7 +33,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
 
   const companyLinks = [
     { label: isThai ? "เกี่ยวกับเรา" : "About", href: localizePath(locale, "about") },
-    { label: isThai ? "ผลงาน" : "Portfolio", href: localizePath(locale, "portfolio") },
+    { label: isThai ? "โปรเจกต์" : "Project", href: localizePath(locale, "project") },
     { label: isThai ? "ติดต่อ" : "Contact", href: localizePath(locale, "contact") }
   ];
 

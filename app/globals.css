@@ -102,6 +102,10 @@ button {
   color: transparent;
 }
 
+.infinity-drift {
+  animation: infinity-drift 5.5s ease-in-out infinite;
+}
+
 .focus-ring:focus-visible {
   outline: 3px solid rgba(var(--verdant-rgb), 0.28);
   outline-offset: 3px;
@@ -131,6 +135,18 @@ button {
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes infinity-drift {
+  0%,
+  100% {
+    opacity: 0.94;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0, -3px, 0) scale(1.025);
   }
 }
 

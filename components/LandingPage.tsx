@@ -13,6 +13,9 @@ const whatsAppUrls: Record<Locale, string> = {
   th: `https://wa.me/66613306922?text=${encodeURIComponent("สวัสดี Inphade สนใจทำเว็บไซต์และอยากขอคำปรึกษาเบื้องต้น")}`
 };
 
+const fieldClass = "mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 outline-none transition focus:border-accent";
+const labelClass = "text-sm font-semibold text-ink";
+
 function track(event: string, params?: Record<string, unknown>) {
   if (typeof window === "undefined") return;
   const win = window as Window & { dataLayer?: Array<Record<string, unknown>>; gtag?: (...args: unknown[]) => void };
@@ -30,7 +33,7 @@ function EnquiryForm({ page }: { page: LandingPage }) {
   return (
     <form
       id="lead-form"
-      className="grid gap-4"
+      className="grid gap-5"
       onSubmit={async (event) => {
         event.preventDefault();
         setStatus("submitting");
@@ -50,8 +53,7 @@ function EnquiryForm({ page }: { page: LandingPage }) {
               email: data.get("email"),
               phone: data.get("phone"),
               currentWebsite: data.get("currentWebsite"),
-              service: data.get("service"),
-              budget: data.get("budget"),
+              project: data.get("project"),
               message: data.get("message"),
               sourcePage: `/${page.slug}`,
               submittedAt: new Date().toISOString()
@@ -74,36 +76,54 @@ function EnquiryForm({ page }: { page: LandingPage }) {
         }
       }}
     >
-      <div className="grid gap-4 sm:grid-cols-2">
-        <input name="name" required placeholder="Name" className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
-        <input name="company" placeholder="Company" className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className={labelClass}>
+          Name
+          <input name="name" required placeholder="Your name" className={fieldClass} />
+        </label>
+        <label className={labelClass}>
+          Company
+          <input name="company" placeholder="Company name" className={fieldClass} />
+        </label>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <input name="email" required type="email" placeholder="Email" className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
-        <input name="phone" placeholder="Phone (optional)" className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className={labelClass}>
+          Email
+          <input name="email" required type="email" placeholder="you@example.com" className={fieldClass} />
+        </label>
+        <label className={labelClass}>
+          Phone
+          <input name="phone" placeholder="Optional" className={fieldClass} />
+        </label>
       </div>
-      <input name="currentWebsite" placeholder="Current website (optional)" className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
-      <div className="grid gap-4 sm:grid-cols-2">
-        <select name="service" required className="rounded-lg border border-line bg-white px-4 py-3 outline-none focus:border-accent" defaultValue="">
-          <option value="" disabled>What do you need?</option>
-          <option>New website</option>
-          <option>Website redesign</option>
-          <option>Landing page</option>
-          <option>Website support</option>
-        </select>
-        <select name="budget" className="rounded-lg border border-line bg-white px-4 py-3 outline-none focus:border-accent" defaultValue="">
-          <option value="" disabled>Budget range</option>
-          <option>Not sure yet</option>
-          <option>Starter business website</option>
-          <option>Custom business website</option>
-          <option>Advanced website or integrations</option>
-        </select>
+      <label className={labelClass}>
+        Current website
+        <input name="currentWebsite" placeholder="Optional" className={fieldClass} />
+      </label>
+      <div>
+        <label className={labelClass}>
+          Project
+          <select name="project" required className={fieldClass} defaultValue="">
+            <option value="" disabled>Select project type</option>
+            <option>Website Design & Development</option>
+            <option>Website Development</option>
+            <option>Website Redesign</option>
+            <option>Company Website</option>
+            <option>Landing Page</option>
+            <option>Custom Website</option>
+            <option>Website Maintenance</option>
+            <option>Not Sure Yet</option>
+          </select>
+        </label>
       </div>
-      <textarea name="message" required placeholder="Message" rows={5} className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
+      <label className={labelClass}>
+        Project details
+        <textarea name="message" required placeholder="Tell us what you are building." rows={5} className={fieldClass} />
+      </label>
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 font-semibold text-white shadow-glow disabled:cursor-not-allowed disabled:opacity-70"
+        className="focus-ring mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 font-semibold text-white shadow-glow disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
       >
         {status === "submitting" ? "Sending..." : "Send Enquiry"} <Send size={18} />
       </button>
@@ -123,7 +143,7 @@ function ThaiLeadForm({ page }: { page: LandingPage }) {
   return (
     <form
       id="lead-form"
-      className="grid gap-4"
+      className="grid gap-5"
       onSubmit={async (event) => {
         event.preventDefault();
         setStatus("submitting");
@@ -142,8 +162,7 @@ function ThaiLeadForm({ page }: { page: LandingPage }) {
               email: data.get("email"),
               phone: data.get("phone"),
               currentWebsite: data.get("currentWebsite"),
-              service: data.get("service"),
-              budget: data.get("budget"),
+              project: data.get("project"),
               message: data.get("message"),
               sourcePage: `/th/${page.slug}`,
               submittedAt: new Date().toISOString()
@@ -166,40 +185,56 @@ function ThaiLeadForm({ page }: { page: LandingPage }) {
         }
       }}
     >
-      <div className="grid gap-4 sm:grid-cols-2">
-        <input name="name" required placeholder="ชื่อ" className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
-        <input name="company" placeholder="บริษัท" className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className={labelClass}>
+          ชื่อ
+          <input name="name" required placeholder="ชื่อของคุณ" className={fieldClass} />
+        </label>
+        <label className={labelClass}>
+          บริษัท
+          <input name="company" placeholder="ชื่อบริษัท" className={fieldClass} />
+        </label>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <input name="email" required type="email" placeholder="อีเมล" className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
-        <input name="phone" required placeholder="เบอร์โทรศัพท์" className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className={labelClass}>
+          อีเมล
+          <input name="email" required type="email" placeholder="you@example.com" className={fieldClass} />
+        </label>
+        <label className={labelClass}>
+          เบอร์โทรศัพท์
+          <input name="phone" required placeholder="เบอร์โทรศัพท์" className={fieldClass} />
+        </label>
       </div>
-      <input name="currentWebsite" placeholder="เว็บไซต์ปัจจุบัน" className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
-      <div className="grid gap-4 sm:grid-cols-2">
-        <select name="service" required className="rounded-lg border border-line bg-white px-4 py-3 outline-none focus:border-accent" defaultValue="">
-          <option value="" disabled>บริการที่สนใจ</option>
-          <option>ทำเว็บไซต์ใหม่</option>
-          <option>ทำเว็บไซต์บริษัท</option>
-          <option>ปรับปรุงเว็บไซต์เดิม</option>
-          <option>Landing Page</option>
-          <option>เว็บไซต์เฉพาะอุตสาหกรรม</option>
-          <option>ยังไม่แน่ใจ</option>
-        </select>
-        <select name="budget" className="rounded-lg border border-line bg-white px-4 py-3 outline-none focus:border-accent" defaultValue="">
-          <option value="" disabled>งบประมาณ</option>
-          <option>ยังไม่แน่ใจ</option>
-          <option>เว็บไซต์ธุรกิจเริ่มต้น</option>
-          <option>เว็บไซต์ธุรกิจแบบ Custom</option>
-          <option>เว็บไซต์ที่มีฟังก์ชันหรือ Integration เพิ่มเติม</option>
-        </select>
+      <label className={labelClass}>
+        เว็บไซต์ปัจจุบัน
+        <input name="currentWebsite" placeholder="ถ้ามี" className={fieldClass} />
+      </label>
+      <div>
+        <label className={labelClass}>
+          โปรเจกต์
+          <select name="project" required className={fieldClass} defaultValue="">
+            <option value="" disabled>เลือกประเภทโปรเจกต์</option>
+            <option>ออกแบบและพัฒนาเว็บไซต์</option>
+            <option>พัฒนาเว็บไซต์</option>
+            <option>รีดีไซน์เว็บไซต์</option>
+            <option>เว็บไซต์บริษัท</option>
+            <option>Landing Page</option>
+            <option>เว็บไซต์ Custom</option>
+            <option>ดูแลและปรับปรุงเว็บไซต์</option>
+            <option>ยังไม่แน่ใจ</option>
+          </select>
+        </label>
       </div>
-      <textarea name="message" required placeholder="รายละเอียดโปรเจกต์" rows={5} className="rounded-lg border border-line px-4 py-3 outline-none focus:border-accent" />
+      <label className={labelClass}>
+        รายละเอียดโปรเจกต์
+        <textarea name="message" required placeholder="เล่าให้เราฟังว่าคุณกำลังสร้างอะไร" rows={5} className={fieldClass} />
+      </label>
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 font-semibold text-white shadow-glow disabled:cursor-not-allowed disabled:opacity-70"
+        className="focus-ring mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 font-semibold text-white shadow-glow disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
       >
-        {status === "submitting" ? "กำลังส่งข้อมูล..." : "ขอใบเสนอราคา"} <Send size={18} />
+        {status === "submitting" ? "กำลังส่งข้อมูล..." : "ส่งรายละเอียดโปรเจกต์"} <Send size={18} />
       </button>
       {message && (
         <p className={`text-sm leading-6 ${status === "success" ? "text-accent" : "text-red-600"}`} role="status">
@@ -225,37 +260,117 @@ function SectionItems({ items }: { items?: string[] }) {
   );
 }
 
-function PortfolioSections({ page, locale, sectionIds }: { page: LandingPage; locale: Locale; sectionIds: string[] }) {
-  const isThai = locale === "th";
-
+function PortfolioSections({ page, sectionIds }: { page: LandingPage; sectionIds: string[] }) {
   return (
-    <section className="bg-[#F7FAF8] px-5 py-20 sm:px-8 sm:py-28">
+    <section className="bg-[#F7FAF8] px-5 pb-14 sm:px-8 sm:pb-16">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid border-l border-t border-line bg-white sm:grid-cols-2 lg:grid-cols-3">
           {page.sections.map((section, index) => (
             <article
               key={section.title}
               id={sectionIds[index]}
-              className={`rounded-lg border border-line bg-white p-7 shadow-[0_10px_30px_rgba(7,21,56,0.045)] ${
-                index === 0 || index === 5 ? "xl:translate-y-8" : ""
-              }`}
+              className="min-h-[11rem] border-b border-r border-line p-5 sm:p-6 lg:min-h-[12rem] lg:p-7"
             >
-              <div className="mb-8 h-1 w-14 rounded-full bg-[#A4D0BE]" />
-              <p className="text-sm font-semibold uppercase text-accent">{section.title}</p>
-              <p className="mt-5 text-xl font-semibold leading-8 text-brandNavy">{section.body}</p>
-              <SectionItems items={section.items} />
+              <div className="flex h-full flex-col justify-between gap-8">
+                <p className="text-lg font-semibold leading-none text-accent sm:text-xl">{String(index + 1).padStart(2, "0")}</p>
+                <div>
+                  <h2 className="text-xl font-semibold leading-snug text-brandNavy sm:text-2xl">{section.title}</h2>
+                  <p className="mt-3 max-w-xs text-sm leading-6 text-muted">{section.body}</p>
+                </div>
+              </div>
             </article>
           ))}
         </div>
-        <div className="mt-20 rounded-lg bg-ink p-8 text-white sm:p-10">
-          <h2 className="text-3xl font-semibold">{page.cta}</h2>
-          <p className="mt-4 max-w-3xl leading-8 text-slate-300">{page.ctaNote}</p>
-          <a href={localizePath(locale, "contact")} className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-semibold text-ink">
-            {isThai ? "ติดต่อ Inphade" : "Contact Inphade"} <ArrowRight size={16} />
-          </a>
-        </div>
       </div>
     </section>
+  );
+}
+
+function ProjectsPage({ page, locale }: { page: LandingPage; locale: Locale }) {
+  const isThai = locale === "th";
+  const sectionIds = page.sections.map((section, index) => section.id ?? `section-${index + 1}`);
+  const heroLines = isThai
+    ? ["เว็บไซต์ที่สร้างขึ้นเพื่อธุรกิจของคุณ"]
+    : ["Built for Your Business"];
+
+  return (
+    <main className={`overflow-hidden bg-[#F7FAF8] ${isThai ? "[&_h1]:!leading-[1.2] [&_h2]:!leading-[1.25] [&_p]:!leading-8" : ""}`}>
+      <section className="relative px-5 pb-8 pt-6 sm:px-8 sm:pb-10">
+        <SiteHeader locale={locale} />
+        <div className="relative z-10 mx-auto max-w-7xl pt-14 sm:pt-16 lg:pt-20">
+          <div className="max-w-4xl">
+            <p className="mb-5 text-sm font-semibold uppercase text-accent">{page.eyebrow}</p>
+            <h1 className="text-[2.25rem] font-semibold leading-[1.04] tracking-normal text-brandNavy sm:text-[3.2rem] lg:text-[4.1rem]">
+              {heroLines.map((line) => (
+                <span key={line} className="block">{line}</span>
+              ))}
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">{page.intro}</p>
+          </div>
+          <div className="mt-10 border-t border-line" />
+        </div>
+      </section>
+      <PortfolioSections page={page} sectionIds={sectionIds} />
+      <SiteFooter locale={locale} />
+    </main>
+  );
+}
+
+function ContactPage({ page, locale }: { page: LandingPage; locale: Locale }) {
+  const isThai = locale === "th";
+  const whatsAppUrl = whatsAppUrls[locale];
+  const form = isThai ? <ThaiLeadForm page={page} /> : <EnquiryForm page={page} />;
+
+  return (
+    <main className={`overflow-hidden bg-white ${isThai ? "[&_h1]:!leading-[1.22] [&_h2]:!leading-[1.25] [&_p]:!leading-8" : ""}`}>
+      <section className="relative px-5 pb-20 pt-6 sm:px-8 sm:pb-28">
+        <div className="mesh absolute inset-0" />
+        <div className="grid-surface absolute inset-0 opacity-70" />
+        <SiteHeader locale={locale} />
+        <div className="relative z-10 mx-auto max-w-7xl pt-24">
+          <p className="mb-4 text-sm font-semibold uppercase text-accent">{page.eyebrow}</p>
+          <h1 className="max-w-4xl text-[2.2rem] sm:text-[3rem] lg:text-[3.45rem] font-semibold leading-[1.08] tracking-normal text-brandNavy">{page.h1}</h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-muted sm:text-xl">{page.intro}</p>
+        </div>
+      </section>
+
+      <section className="bg-white px-5 pb-24 sm:px-8 sm:pb-32">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.64fr_0.36fr] lg:items-start">
+          <div className="rounded-lg border border-line bg-white p-6 shadow-premium sm:p-9">
+            <div className="mb-8 flex items-end justify-between gap-6 border-b border-line pb-6">
+              <div>
+                <p className="text-sm font-semibold uppercase text-accent">{isThai ? "Project Enquiry" : "Project Enquiry"}</p>
+                <h2 className="mt-2 text-3xl font-semibold text-brandNavy">{isThai ? "ส่งรายละเอียดโปรเจกต์" : "Tell us about the project"}</h2>
+              </div>
+            </div>
+            {form}
+          </div>
+
+          <aside className="rounded-lg bg-ink p-8 text-white sm:p-9">
+            <p className="text-sm font-semibold uppercase text-[#8FBFA8]">{isThai ? "ติดต่อโดยตรง" : "Direct Contact"}</p>
+            <div className="mt-8 grid gap-8">
+              <div>
+                <h2 className="text-2xl font-semibold">Email</h2>
+                <a href="mailto:hello@inphade.com" onClick={() => track("email_click")} className="mt-3 inline-block text-lg text-slate-300 transition hover:text-white">
+                  hello@inphade.com
+                </a>
+              </div>
+              <div className="border-t border-white/10 pt-8">
+                <h2 className="text-2xl font-semibold">WhatsApp</h2>
+                <a href={whatsAppUrl} target="_blank" rel="noopener noreferrer" onClick={() => track("whatsapp_click")} className="mt-3 inline-flex items-center gap-2 text-lg text-slate-300 transition hover:text-white">
+                  {isThai ? "เริ่มบทสนทนา" : "Start a conversation"} <MessageCircle size={18} />
+                </a>
+              </div>
+              <div className="border-t border-white/10 pt-8">
+                <p className="text-sm font-semibold uppercase text-[#8FBFA8]">{isThai ? "ขอบเขตงาน" : "Capabilities"}</p>
+                <p className="mt-3 text-lg leading-8 text-slate-300">{page.ctaNote}</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+      <SiteFooter locale={locale} />
+    </main>
   );
 }
 
@@ -291,12 +406,14 @@ function AboutSections({ page, locale, sectionIds }: { page: LandingPage; locale
 }
 
 export function LandingPage({ page, locale }: { page: LandingPage; locale: Locale }) {
-  const isContact = page.kind === "contact";
+  if (page.kind === "contact") return <ContactPage page={page} locale={locale} />;
+  if (page.kind === "project") return <ProjectsPage page={page} locale={locale} />;
+
   const isThai = locale === "th";
   const whatsAppUrl = whatsAppUrls[locale];
   const sectionIds = page.sections.map((section, index) => section.id ?? `section-${index + 1}`);
   const focusLabel = page.kind === "industry" ? (isThai ? "สิ่งที่โฟกัส" : "Industry Focus") : (isThai ? "ภาพรวมโปรเจกต์" : "Project Focus");
-  const form = isThai ? <ThaiLeadForm page={page} /> : <EnquiryForm page={page} />;
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -320,7 +437,7 @@ export function LandingPage({ page, locale }: { page: LandingPage; locale: Local
             <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl">{page.intro}</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a
-                href={isThai ? (isContact ? "#lead-form" : localizePath(locale, "contact")) : whatsAppUrl}
+                href={isThai ? localizePath(locale, "contact") : whatsAppUrl}
                 target={isThai ? undefined : "_blank"}
                 rel={isThai ? undefined : "noopener noreferrer"}
                 onClick={() => {
@@ -355,28 +472,20 @@ export function LandingPage({ page, locale }: { page: LandingPage; locale: Local
             </div>
           </div>
           <div className="rounded-lg border border-line bg-white p-6 shadow-premium">
-            <h2 className="text-2xl font-semibold text-ink">{isContact ? (isThai ? "ขอใบเสนอราคา" : "Project Enquiry") : focusLabel}</h2>
-            {isContact ? (
-              <div className="mt-6">
-                {form}
-              </div>
-            ) : (
-              <div className="mt-6 grid gap-3">
-                {page.sections.map((section, index) => (
-                  <a key={section.title} href={`#${sectionIds[index]}`} className="flex items-center gap-3 rounded-lg border border-line p-4 text-left transition hover:border-accent/40 hover:bg-[#F7FAF8]">
-                    <Check className="shrink-0 text-accent" size={18} />
-                    <span className="font-medium text-ink">{section.title}</span>
-                  </a>
-                ))}
-              </div>
-            )}
+            <h2 className="text-2xl font-semibold text-ink">{focusLabel}</h2>
+            <div className="mt-6 grid gap-3">
+              {page.sections.map((section, index) => (
+                <a key={section.title} href={`#${sectionIds[index]}`} className="flex items-center gap-3 rounded-lg border border-line p-4 text-left transition hover:border-accent/40 hover:bg-[#F7FAF8]">
+                  <Check className="shrink-0 text-accent" size={18} />
+                  <span className="font-medium text-ink">{section.title}</span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {page.kind === "portfolio" ? (
-        <PortfolioSections page={page} locale={locale} sectionIds={sectionIds} />
-      ) : page.kind === "company" ? (
+      {page.kind === "company" ? (
         <AboutSections page={page} locale={locale} sectionIds={sectionIds} />
       ) : (
       <section className="bg-white px-5 py-20 sm:px-8 sm:py-28">
@@ -411,7 +520,7 @@ export function LandingPage({ page, locale }: { page: LandingPage; locale: Local
                   key={link.href}
                   href={link.href}
                   onClick={() => {
-                    if (link.href === "/portfolio") track("portfolio_view");
+                    if (link.href === "/project") track("portfolio_view");
                   }}
                   className="group flex items-center justify-between rounded-lg bg-white p-4 font-medium text-ink shadow-sm transition hover:text-accent"
                 >
