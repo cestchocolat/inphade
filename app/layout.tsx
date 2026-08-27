@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { siteUrl } from "@/lib/pages";
 import "./globals.css";
 
 const inter = Inter({
@@ -11,7 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Inphade",
   description: "Modern websites for ambitious businesses.",
-  metadataBase: new URL("https://inphade.com"),
+  metadataBase: new URL(siteUrl),
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
 import { getAlternatePath, localizePath } from "@/lib/routes";
 import type { Locale } from "@/lib/routes";
 import type { Dictionary } from "@/lib/i18n";
@@ -19,7 +17,6 @@ import {
   Palette,
   Search,
   ShieldCheck,
-  Sparkles,
   Target,
   Utensils,
   Wrench
@@ -40,32 +37,33 @@ const conceptImages: Record<string, string> = {
 
 const serviceIcons = [Palette, Target, Search, Wrench] as const;
 const industryIcons = [Building2, HeartPulse, Hotel, Utensils, Briefcase] as const;
+const englishServiceLinks = ["/web-design-bangkok", "/website-redesign-bangkok", "/services", "/services"] as const;
+const englishIndustryLinks = ["/real-estate-web-design", "/clinic-web-design", "/hotel-web-design", "/restaurant-web-design", "/web-design-bangkok"] as const;
+const thaiServiceLinks = [
+  "/th/web-design-bangkok",
+  "/th/website-development-bangkok",
+  "/th/website-redesign-bangkok",
+  "/th/company-website",
+  "/th/web-design-bangkok",
+  "/th/web-design-bangkok",
+  "/th/website-development-bangkok",
+  "/th/website-development-bangkok"
+] as const;
+const thaiIndustryLinks = [
+  "/th/real-estate-web-design",
+  "/th/clinic-web-design",
+  "/th/hotel-web-design",
+  "/th/restaurant-web-design",
+  "/th/professional-services-web-design"
+] as const;
 
-function Counter({ value, suffix = "", prefix = "" }: { value: number; suffix?: string; prefix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    let frame = 0;
-    const total = 72;
-    const id = window.setInterval(() => {
-      frame += 1;
-      const eased = 1 - Math.pow(1 - frame / total, 3);
-      setCount(Math.round(value * eased));
-      if (frame >= total) window.clearInterval(id);
-    }, 18);
-    return () => window.clearInterval(id);
-  }, [inView, value]);
-
-  return (
-    <span ref={ref}>
-      {prefix}
-      {count}
-      {suffix}
-    </span>
-  );
+function track(event: string) {
+  const win = window as Window & { dataLayer?: Array<Record<string, unknown>>; gtag?: (...args: unknown[]) => void };
+  if (win.gtag) {
+    win.gtag("event", event);
+    return;
+  }
+  win.dataLayer?.push({ event });
 }
 
 function GalleryImageMockup({ title, src }: { title: string; src: string }) {
@@ -98,7 +96,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
   const concepts = t.gallery.concepts;
   const services = t.services.items.map((service, index) => ({
     ...service,
-    Icon: serviceIcons[index]
+    Icon: serviceIcons[index % serviceIcons.length]
   }));
   const industries = t.industries.items.map((industry, index) => ({
     ...industry,
@@ -107,10 +105,17 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
   const englishWhatsAppUrl = `https://wa.me/66613306922?text=${encodeURIComponent("Hi! I'm interested in building a website with Inphade. I'd like to learn more about your services.")}`;
   const thaiWhatsAppUrl = `https://wa.me/66613306922?text=${encodeURIComponent("สวัสดี Inphade สนใจทำเว็บไซต์และอยากสอบถามรายละเอียดเพิ่มเติม")}`;
   const whatsAppUrl = locale === "th" ? thaiWhatsAppUrl : englishWhatsAppUrl;
-  const primaryCtaHref = whatsAppUrl;
-  const navCtaHref = whatsAppUrl;
-  const primaryCtaTarget = "_blank";
-  const primaryCtaRel = "noopener noreferrer";
+  const primaryCtaHref = locale === "th" ? "/th/web-design-bangkok#lead-form" : whatsAppUrl;
+  const navCtaHref = locale === "th" ? "/th/web-design-bangkok#lead-form" : whatsAppUrl;
+  const primaryCtaTarget = locale === "th" ? undefined : "_blank";
+  const primaryCtaRel = locale === "th" ? undefined : "noopener noreferrer";
+  const workHref = locale === "th" ? "#work" : localizePath(locale, "portfolio");
+  const servicesHref = locale === "th" ? "#services" : localizePath(locale, "services");
+  const contactHref = locale === "th" ? "#contact" : localizePath(locale, "contact");
+  const webDesignHref = locale === "th" ? "/th/web-design-bangkok" : "/web-design-bangkok";
+  const getServiceHref = (index: number) => locale === "en" ? englishServiceLinks[index] ?? "/services" : thaiServiceLinks[index] ?? "/th/web-design-bangkok";
+  const getIndustryHref = (index: number) => locale === "en" ? englishIndustryLinks[index] ?? "/web-design-bangkok" : thaiIndustryLinks[index] ?? "/th/web-design-bangkok";
+  const thaiTypographyClass = locale === "th" ? "[&_h1]:!leading-[1.22] [&_h2]:!leading-[1.22] [&_h3]:!leading-[1.3] [&_p]:!leading-8 sm:[&_p]:!leading-9" : "";
 
   const switchLanguage = (nextLocale: Locale) => {
     if (nextLocale === locale) return;
@@ -121,21 +126,21 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "Organization",
     name: "Inphade",
+    url: "https://www.inphade.com/",
     description: t.schema.description,
-    areaServed: "Global",
-    logo: "https://inphade.com/brand/inphade-logo.png",
-    serviceType: t.schema.serviceType
+    logo: "https://www.inphade.com/brand/inphade-logo.png",
+    email: "hello@inphade.com"
   };
 
   return (
-    <main className="overflow-hidden bg-white">
+    <main className={`overflow-hidden bg-white ${thaiTypographyClass}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <section className="relative overflow-hidden px-5 pb-20 pt-6 sm:px-8">
+      <section className="relative overflow-visible px-5 pb-40 pt-6 sm:px-8 sm:pb-44">
         <div className="mesh absolute inset-0" />
         <div className="grid-surface absolute inset-0 opacity-70" />
-        <div className="pointer-events-none absolute inset-x-0 top-24 mx-auto h-[32rem] max-w-5xl bg-[radial-gradient(circle_at_center,rgba(31,122,83,0.08),transparent_70%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-24 mx-auto h-[27rem] max-w-4xl bg-[radial-gradient(circle_at_center,rgba(31,122,83,0.08),transparent_70%)]" />
         <nav className="glass relative z-20 mx-auto flex max-w-7xl items-center justify-between rounded-full px-4 py-3">
           <a href={localizePath(locale)} className="flex items-center gap-3" aria-label={t.nav.home}>
             <Image
@@ -149,10 +154,11 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
             <span className="text-xl font-semibold tracking-normal text-brandNavy sm:text-2xl">Inphade</span>
           </a>
           <div className="hidden items-center gap-7 text-sm font-medium text-muted md:flex">
-            <a href={`${localizePath(locale, "portfolio")}#work`} className="hover:text-ink">{t.nav.work}</a>
-            <a href={`${localizePath(locale, "services")}#services`} className="hover:text-ink">{t.nav.services}</a>
+            <a href={workHref} onClick={() => track("portfolio_view")} className="hover:text-ink">{t.nav.work}</a>
+            <a href={servicesHref} className="hover:text-ink">{t.nav.services}</a>
+            <a href={webDesignHref} className="hover:text-ink">{locale === "th" ? "ออกแบบเว็บไซต์" : "Web Design"}</a>
             <a href="#process" className="hover:text-ink">{t.nav.process}</a>
-            <a href={`${localizePath(locale, "contact")}#contact`} className="hover:text-ink">{t.nav.contact}</a>
+            <a href={contactHref} className="hover:text-ink">{t.nav.contact}</a>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1 text-xs font-semibold text-muted" aria-label={t.nav.language}>
@@ -176,44 +182,45 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
             </div>
             <a
               href={navCtaHref}
-              target={locale === "th" ? "_blank" : undefined}
-              rel={locale === "th" ? "noopener noreferrer" : undefined}
+              target={locale === "th" ? undefined : "_blank"}
+              rel={locale === "th" ? undefined : "noopener noreferrer"}
+              onClick={() => {
+                if (locale === "en") track("whatsapp_click");
+              }}
               className="focus-ring hidden items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white sm:inline-flex"
             >
               {t.nav.book} <ArrowRight size={15} />
             </a>
           </div>
         </nav>
-        <div className="relative z-10 mx-auto max-w-7xl pt-24 text-center sm:pt-32">
-          {t.hero.eyebrow && (
-            <motion.p initial={false} className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-line bg-white/75 px-4 py-2 text-sm font-semibold text-muted shadow-sm backdrop-blur">
-              <Sparkles size={16} className="text-accent" /> {t.hero.eyebrow}
-            </motion.p>
-          )}
-          <motion.h1
-            initial={false}
+        <div className="relative z-10 mx-auto max-w-7xl pt-36 text-center sm:pt-44">
+          <h1
             className={`mx-auto max-w-4xl font-semibold leading-[1.08] tracking-normal text-brandNavy ${
-              locale === "th" ? "text-4xl sm:text-5xl lg:text-6xl" : "text-4xl sm:text-6xl lg:text-7xl"
+              locale === "th" ? "text-[2.2rem] sm:text-[2.75rem] lg:text-[3.2rem]" : "text-[2.05rem] sm:text-[3rem] lg:text-[3.6rem]"
             }`}
           >
             {t.hero.headline}
-          </motion.h1>
-          <motion.p initial={false} className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl">
+          </h1>
+          <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl">
             {t.hero.subheadline}
-          </motion.p>
-          <motion.div initial={false} className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+          </p>
+          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
             <a
               href={primaryCtaHref}
               target={primaryCtaTarget}
               rel={primaryCtaRel}
+              onClick={() => {
+                track("whatsapp_click");
+                track("book_call_click");
+              }}
               className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 font-semibold text-white shadow-glow"
             >
               {t.hero.primary} <ArrowRight size={18} />
             </a>
-            <a href={`${localizePath(locale, "portfolio")}#work`} className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white px-6 py-4 font-semibold text-ink shadow-sm">
+            <a href={workHref} onClick={() => track("portfolio_view")} className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white px-6 py-4 font-semibold text-ink shadow-sm">
               {t.hero.secondary}
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -221,21 +228,20 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
         <div className="pointer-events-none absolute inset-x-8 top-1/2 h-24 -translate-y-1/2 rounded-full bg-[linear-gradient(90deg,rgba(164,208,190,0),rgba(164,208,190,0.24),rgba(164,208,190,0))] blur-3xl" />
         <div className="mx-auto grid max-w-7xl gap-4 px-5 sm:grid-cols-2 sm:px-8 lg:grid-cols-4">
           {[
-            ["50", `+ ${t.stats.websites}`],
-            ["95", `+ ${t.stats.lighthouse}`],
-            ["1", ` ${t.stats.seo}`],
-            ["1", ` ${t.stats.performance}`]
-          ].map(([value, label], index) => (
+            t.stats.websites,
+            t.stats.lighthouse,
+            t.stats.seo,
+            t.stats.performance
+          ].map((label) => (
             <div
               key={label}
               className="relative overflow-hidden rounded-lg border border-[rgba(7,21,56,0.08)] bg-white p-5 text-center shadow-[0_12px_30px_rgba(7,21,56,0.045)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(7,21,56,0.075)]"
             >
               <div className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,rgba(164,208,190,0),#A4D0BE,rgba(164,208,190,0))]" />
               <div className="text-[2.65rem] font-semibold leading-none text-ink">
-                {index < 2 ? <Counter value={Number(value)} suffix={label.startsWith("+") ? "" : ""} /> : <Check className="mx-auto text-[#A4D0BE]" size={40} strokeWidth={2.1} />}
-                {index < 2 && <span>{label.split(" ")[0]}</span>}
+                <Check className="mx-auto text-[#A4D0BE]" size={40} strokeWidth={2.1} />
               </div>
-              <p className="mt-2 text-sm font-medium text-muted">{index < 2 ? label.replace("+ ", "") : label.trim()}</p>
+              <p className="mt-2 text-sm font-medium text-muted">{label}</p>
             </div>
           ))}
         </div>
@@ -271,11 +277,9 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
             <h2 className="services-heading-gradient relative text-3xl font-semibold sm:text-4xl">{t.services.heading}</h2>
           </div>
           <div className="grid gap-x-12 gap-y-0 border-y border-line/80 md:grid-cols-2">
-            {services.map(({ title, Icon, description }) => (
-              <motion.div
+            {services.map(({ title, Icon, description }, index) => (
+              <div
                 key={title}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="group relative py-10 transition duration-300 md:border-b md:border-line/80 md:[&:nth-last-child(-n+2)]:border-b-0"
               >
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#A4D0BE]/70 to-transparent md:hidden" />
@@ -286,9 +290,12 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
                   <div>
                     <h3 className="text-2xl font-semibold text-ink">{title}</h3>
                     <p className="mt-4 max-w-xl leading-7 text-muted">{description}</p>
+                    <a href={getServiceHref(index)} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+                      {locale === "th" ? "ดูรายละเอียด" : "Learn more"} <ArrowRight size={15} />
+                    </a>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -311,16 +318,14 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
                 const isTop = index % 2 === 0;
                 return (
                   <div key={title} className="relative min-h-[520px]">
-                    <motion.div
-                      whileHover={{ y: isTop ? -6 : 6 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    <div
                       className={`absolute left-0 right-0 ${isTop ? "bottom-[calc(50%+4.75rem)]" : "top-[calc(50%+4.75rem)]"}`}
                     >
                       <div className="rounded-lg border border-white/8 bg-white/[0.045] p-5 shadow-[0_18px_54px_rgba(0,0,0,0.16)] backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-white/[0.065]">
                         <div className="mb-3 text-base font-semibold text-[#A7F3D0]">{title}</div>
                         <p className="text-sm leading-6 text-slate-300">{description}</p>
                       </div>
-                    </motion.div>
+                    </div>
 
                     <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
                       <div className="h-3 w-3 rounded-full border border-[#A7F3D0]/70 bg-[#A7F3D0]" />
@@ -335,10 +340,8 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
           <div className="relative mt-14 grid gap-5 lg:hidden">
             <div className="absolute bottom-8 left-6 top-8 w-px bg-gradient-to-b from-white/35 via-white/20 to-transparent" />
             {t.process.items.map(({ title, description }) => (
-              <motion.div
+              <div
                 key={title}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="relative grid grid-cols-[2rem_1fr] gap-5"
               >
                 <div className="relative z-10 mt-2 h-3 w-3 rounded-full border border-[#A7F3D0]/70 bg-[#A7F3D0]" />
@@ -346,7 +349,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
                   <h3 className="text-lg font-semibold text-[#A7F3D0]">{title}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -362,11 +365,9 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {industries.map(({ title, Icon, description }) => (
-              <motion.div
+            {industries.map(({ title, Icon, description }, index) => (
+              <div
                 key={title}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="relative overflow-hidden rounded-lg border border-line bg-white p-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition duration-300 hover:border-[#1F7A53]/35 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)]"
               >
                 <div className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#176C4B,#245F48)]" />
@@ -375,7 +376,10 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
                 </div>
                 <h3 className="text-xl font-semibold text-ink">{title}</h3>
                 <p className="mt-4 text-sm leading-6 text-muted">{description}</p>
-              </motion.div>
+                <a href={getIndustryHref(index)} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent">
+                  {locale === "th" ? "ดูบริการ" : "View service"} <ArrowRight size={15} />
+                </a>
+              </div>
             ))}
           </div>
         </div>
@@ -395,13 +399,25 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
                 target={primaryCtaTarget}
                 rel={primaryCtaRel}
                 aria-label={t.cta.primaryAria}
+                onClick={() => {
+                  if (locale === "en") {
+                    track("whatsapp_click");
+                    track("book_call_click");
+                  }
+                }}
                 className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-4 font-semibold text-ink"
               >
                 {t.cta.primary} <Globe2 size={18} />
               </a>
-              <a href="mailto:hello@inphade.com?subject=Free Proposal" className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-4 font-semibold text-white">
-                {t.cta.secondary} <ShieldCheck size={18} />
-              </a>
+              {locale === "th" ? (
+                <a href={whatsAppUrl} target="_blank" rel="noopener noreferrer" onClick={() => track("whatsapp_click")} className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-4 font-semibold text-white">
+                  {t.cta.secondary} <ShieldCheck size={18} />
+                </a>
+              ) : (
+                <a href="mailto:hello@inphade.com?subject=Free Proposal" onClick={() => track("email_click")} className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-4 font-semibold text-white">
+                  {t.cta.secondary} <ShieldCheck size={18} />
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -427,16 +443,16 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
 
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{t.footer.contact}</h3>
-              <a href="mailto:hello@inphade.com" className="mt-4 block text-slate-300 transition hover:text-white">
-                hello@inphade.com
-              </a>
+                <a href="mailto:hello@inphade.com" onClick={() => track("email_click")} className="mt-4 block text-slate-300 transition hover:text-white">
+                  hello@inphade.com
+                </a>
             </div>
 
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{t.footer.services}</h3>
               <div className="mt-4 grid gap-3 text-slate-300">
-                {t.services.items.map((service) => (
-                  <a key={service.title} href={`${localizePath(locale, "services")}#services`} className="transition hover:text-white">
+                {t.services.items.map((service, index) => (
+                  <a key={service.title} href={getServiceHref(index)} className="transition hover:text-white">
                     {service.title}
                   </a>
                 ))}
@@ -446,10 +462,10 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{t.footer.company}</h3>
               <div className="mt-4 grid gap-3 text-slate-300">
-                <a href={localizePath(locale)} className="transition hover:text-white">{t.footer.about}</a>
+                <a href={locale === "en" ? "/about" : localizePath(locale)} className="transition hover:text-white">{t.footer.about}</a>
                 <a href="#process" className="transition hover:text-white">{t.footer.process}</a>
-                <a href={`${localizePath(locale, "portfolio")}#work`} className="transition hover:text-white">{t.footer.portfolio}</a>
-                <a href={`${localizePath(locale, "contact")}#contact`} className="transition hover:text-white">{t.footer.contact}</a>
+                <a href={workHref} onClick={() => track("portfolio_view")} className="transition hover:text-white">{t.footer.portfolio}</a>
+                <a href={contactHref} className="transition hover:text-white">{t.footer.contact}</a>
               </div>
             </div>
           </div>

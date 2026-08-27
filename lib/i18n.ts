@@ -6,8 +6,8 @@ export type { Locale, RouteSlug } from "@/lib/routes";
 export const dictionaries = {
   en: {
     metadata: {
-      title: "Inphade",
-      description: "Modern websites for ambitious businesses."
+      title: "Web Design Bangkok | High-Performance Websites | Inphade",
+      description: "Inphade designs and develops high-performance websites for businesses in Bangkok and Thailand. Fast, SEO-ready and built to generate leads."
     },
     nav: {
       home: "Inphade home",
@@ -19,18 +19,18 @@ export const dictionaries = {
       language: "Language"
     },
     hero: {
-      eyebrow: "We build digital assets that generate business growth.",
-      headline: "Premium Websites Built For Growth",
+      eyebrow: "",
+      headline: "Web Design & Development in Bangkok Built for Growth",
       subheadline:
-        "We design and develop high-performance websites that elevate brands, generate leads, and create long-term business value.",
-      primary: "Let's Talk",
+        "Inphade designs and develops fast, conversion-focused websites for businesses in Bangkok and across Thailand, combining strategy, design, development and SEO foundations in one build.",
+      primary: "Get a Free Website Proposal",
       secondary: "View Our Work"
     },
     stats: {
-      websites: "Websites Delivered",
-      lighthouse: "Lighthouse Scores",
-      seo: "SEO-Optimized Builds",
-      performance: "Fast Global Performance"
+      websites: "SEO-Ready Architecture",
+      lighthouse: "Mobile-First Design",
+      seo: "Lead Generation Focus",
+      performance: "Performance-Focused Development"
     },
     gallery: {
       label: "Website Showcase Gallery",
@@ -177,11 +177,11 @@ export const dictionaries = {
     },
     nav: {
       home: "หน้าแรก Inphade",
-      work: "สำรวจ",
+      work: "ผลงาน",
       services: "บริการ",
-      process: "ขั้นตอน",
-      contact: "ติดต่อ",
-      book: "ปรึกษา",
+      process: "ขั้นตอนการทำงาน",
+      contact: "ติดต่อเรา",
+      book: "ขอใบเสนอราคา",
       language: "ภาษา"
     },
     hero: {
@@ -189,14 +189,14 @@ export const dictionaries = {
       headline: "ออกแบบและพัฒนาเว็บไซต์เพื่อการเติบโตของธุรกิจ",
       subheadline:
         "เราออกแบบและพัฒนาเว็บไซต์ที่ช่วยสร้างความน่าเชื่อถือ เพิ่มโอกาสในการขาย และยกระดับแบรนด์ของคุณในระยะยาว",
-      primary: "ปรึกษา",
-      secondary: "สำรวจ"
+      primary: "ขอใบเสนอราคา",
+      secondary: "ดูผลงาน"
     },
     stats: {
-      websites: "เว็บไซต์ที่ส่งมอบ",
-      lighthouse: "คะแนน Lighthouse",
-      seo: "งานที่พร้อมสำหรับ SEO",
-      performance: "ประสิทธิภาพระดับสากล"
+      websites: "โครงสร้างพร้อม SEO",
+      lighthouse: "ออกแบบรองรับมือถือ",
+      seo: "เน้นเส้นทางสร้าง Leads",
+      performance: "พัฒนาโดยคำนึงถึงความเร็ว"
     },
     gallery: {
       label: "ตัวอย่างเว็บไซต์",
@@ -216,27 +216,47 @@ export const dictionaries = {
     },
     services: {
       label: "บริการ",
-      heading: "บริการของเรา",
+      heading: "บริการเว็บไซต์สำหรับธุรกิจ",
       items: [
         {
-          title: "เว็บไซต์ธุรกิจ",
+          title: "ออกแบบเว็บไซต์",
           description:
-            "สร้างเว็บไซต์ที่สะท้อนความเป็นมืออาชีพ สร้างความน่าเชื่อถือ และช่วยให้ลูกค้าติดต่อคุณได้ง่ายขึ้น"
+            "ออกแบบเว็บไซต์ธุรกิจให้สื่อสารชัดเจน น่าเชื่อถือ ใช้งานง่ายบนมือถือ และรองรับการสร้าง Leads"
         },
         {
-          title: "ปรับปรุงเว็บไซต์เดิม",
+          title: "พัฒนาเว็บไซต์",
           description:
-            "ยกระดับดีไซน์ ความเร็ว และประสบการณ์ใช้งาน เพื่อให้เว็บไซต์ตอบโจทย์ธุรกิจในปัจจุบัน"
+            "พัฒนาเว็บไซต์ที่โหลดเร็ว ดูแลต่อได้ รองรับฟังก์ชันเฉพาะ Integration และการขยายตัวของธุรกิจ"
         },
         {
-          title: "SEO พื้นฐาน",
+          title: "รีดีไซน์เว็บไซต์",
           description:
-            "วางโครงสร้างเว็บไซต์ให้พร้อมสำหรับ Google เพื่อเพิ่มโอกาสในการเข้าถึงลูกค้าใหม่"
+            "ปรับปรุงเว็บไซต์เดิมให้ทันสมัยขึ้น ใช้งานง่ายขึ้น และรักษาความต่อเนื่องของ SEO ที่มีอยู่"
         },
         {
-          title: "ดูแลเว็บไซต์",
+          title: "เว็บไซต์บริษัท",
+          description:
+            "สร้างเว็บไซต์องค์กรที่อธิบายบริการ โปรไฟล์บริษัท และช่องทางติดต่ออย่างเป็นระบบ"
+        },
+        {
+          title: "Landing Page",
+          description:
+            "ออกแบบหน้าสำหรับแคมเปญ บริการ หรือข้อเสนอเฉพาะ เพื่อพาผู้เข้าชมไปสู่การติดต่อที่ชัดเจน"
+        },
+        {
+          title: "SEO Foundation",
+          description:
+            "วางโครงสร้าง URL เนื้อหา Metadata Sitemap และพื้นฐานทางเทคนิคให้พร้อมสำหรับการค้นหา"
+        },
+        {
+          title: "Website Maintenance",
           description:
             "อัปเดตเนื้อหา แก้ไขปัญหา และดูแลเว็บไซต์ให้พร้อมใช้งานอยู่เสมอ"
+        },
+        {
+          title: "Custom Development",
+          description:
+            "พัฒนาฟังก์ชันเฉพาะตามขอบเขตงาน เช่น ฟอร์ม ระบบเนื้อหา การเชื่อมต่อ หรือโครงสร้างที่ต้องปรับตามธุรกิจ"
         }
       ]
     },
@@ -315,9 +335,9 @@ export const dictionaries = {
       headline: "พร้อมมีเว็บไซต์ที่ช่วยให้ธุรกิจเติบโตหรือยัง?",
       subheadline:
         "เราสร้างเว็บไซต์ที่ช่วยสร้างความน่าเชื่อถือ เพิ่มโอกาสทางธุรกิจ และเติบโตไปพร้อมกับแบรนด์ของคุณ",
-      primary: "ปรึกษา",
-      primaryAria: "จองคิวปรึกษา 30 นาทีกับ Inphade",
-      secondary: "ขอข้อเสนอฟรี"
+      primary: "ขอใบเสนอราคา",
+      primaryAria: "ปรึกษาโปรเจกต์เว็บไซต์กับ Inphade",
+      secondary: "ปรึกษาโปรเจกต์กับเรา"
     },
     footer: {
       description:
@@ -326,8 +346,8 @@ export const dictionaries = {
       services: "บริการ",
       company: "บริษัท",
       about: "เกี่ยวกับเรา",
-      process: "ขั้นตอน",
-      portfolio: "สำรวจ",
+      process: "ขั้นตอนการทำงาน",
+      portfolio: "ผลงาน",
       copyright: "© 2026 Inphade สงวนลิขสิทธิ์"
     },
     schema: {
