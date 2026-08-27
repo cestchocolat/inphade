@@ -7,7 +7,6 @@ export const routeSlugs = [
   "portfolio",
   "contact",
   "about",
-  "insights",
   "web-design-bangkok",
   "website-development-bangkok",
   "website-redesign-bangkok",
@@ -26,7 +25,8 @@ export const englishRouteSlugs = [
   "portfolio",
   "contact",
   "about",
-  "insights",
+  "company-website",
+  "professional-services-web-design",
   "web-design-bangkok",
   "website-development-bangkok",
   "website-redesign-bangkok",
@@ -39,6 +39,10 @@ export const englishRouteSlugs = [
 export type EnglishRouteSlug = (typeof englishRouteSlugs)[number];
 
 export const thaiRouteSlugs = [
+  "services",
+  "portfolio",
+  "contact",
+  "about",
   "web-design-bangkok",
   "website-development-bangkok",
   "website-redesign-bangkok",
@@ -53,13 +57,19 @@ export const thaiRouteSlugs = [
 export type ThaiRouteSlug = (typeof thaiRouteSlugs)[number];
 
 export const thaiHreflangEquivalentSlugs = [
+  "services",
+  "portfolio",
+  "contact",
+  "about",
   "web-design-bangkok",
   "website-development-bangkok",
   "website-redesign-bangkok",
+  "company-website",
   "real-estate-web-design",
   "clinic-web-design",
   "hotel-web-design",
-  "restaurant-web-design"
+  "restaurant-web-design",
+  "professional-services-web-design"
 ] as const;
 
 export type ThaiHreflangEquivalentSlug = (typeof thaiHreflangEquivalentSlugs)[number];
@@ -70,7 +80,6 @@ export const localizedSlugs: Record<Locale, Record<RouteSlug, string>> = {
     portfolio: "portfolio",
     contact: "contact",
     about: "about",
-    insights: "insights",
     "web-design-bangkok": "web-design-bangkok",
     "website-development-bangkok": "website-development-bangkok",
     "website-redesign-bangkok": "website-redesign-bangkok",
@@ -86,7 +95,6 @@ export const localizedSlugs: Record<Locale, Record<RouteSlug, string>> = {
     portfolio: "portfolio",
     contact: "contact",
     about: "about",
-    insights: "insights",
     "web-design-bangkok": "web-design-bangkok",
     "website-development-bangkok": "website-development-bangkok",
     "website-redesign-bangkok": "website-redesign-bangkok",

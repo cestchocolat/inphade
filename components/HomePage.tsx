@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import { getAlternatePath, localizePath } from "@/lib/routes";
+import { localizePath } from "@/lib/routes";
 import type { Locale } from "@/lib/routes";
 import type { Dictionary } from "@/lib/i18n";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import {
   ArrowRight,
   Briefcase,
@@ -37,7 +37,7 @@ const conceptImages: Record<string, string> = {
 
 const serviceIcons = [Palette, Target, Search, Wrench] as const;
 const industryIcons = [Building2, HeartPulse, Hotel, Utensils, Briefcase] as const;
-const englishServiceLinks = ["/web-design-bangkok", "/website-redesign-bangkok", "/services", "/services"] as const;
+const englishServiceLinks = ["/web-design-bangkok", "/website-redesign-bangkok", "/services#seo-foundation", "/services#ongoing-support"] as const;
 const englishIndustryLinks = ["/real-estate-web-design", "/clinic-web-design", "/hotel-web-design", "/restaurant-web-design", "/web-design-bangkok"] as const;
 const thaiServiceLinks = [
   "/th/web-design-bangkok",
@@ -45,8 +45,8 @@ const thaiServiceLinks = [
   "/th/website-redesign-bangkok",
   "/th/company-website",
   "/th/web-design-bangkok",
-  "/th/web-design-bangkok",
-  "/th/website-development-bangkok",
+  "/th/services#seo-foundation",
+  "/th/services#ongoing-support",
   "/th/website-development-bangkok"
 ] as const;
 const thaiIndustryLinks = [
@@ -90,8 +90,6 @@ function GalleryImageMockup({ title, src }: { title: string; src: string }) {
 }
 
 export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: Dictionary }) {
-  const router = useRouter();
-  const pathname = usePathname();
   const t = dictionary;
   const concepts = t.gallery.concepts;
   const services = t.services.items.map((service, index) => ({
@@ -105,24 +103,13 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
   const englishWhatsAppUrl = `https://wa.me/66613306922?text=${encodeURIComponent("Hi! I'm interested in building a website with Inphade. I'd like to learn more about your services.")}`;
   const thaiWhatsAppUrl = `https://wa.me/66613306922?text=${encodeURIComponent("สวัสดี Inphade สนใจทำเว็บไซต์และอยากสอบถามรายละเอียดเพิ่มเติม")}`;
   const whatsAppUrl = locale === "th" ? thaiWhatsAppUrl : englishWhatsAppUrl;
-  const primaryCtaHref = locale === "th" ? "/th/web-design-bangkok#lead-form" : whatsAppUrl;
-  const navCtaHref = locale === "th" ? "/th/web-design-bangkok#lead-form" : whatsAppUrl;
+  const primaryCtaHref = locale === "th" ? "/th/contact" : whatsAppUrl;
   const primaryCtaTarget = locale === "th" ? undefined : "_blank";
   const primaryCtaRel = locale === "th" ? undefined : "noopener noreferrer";
-  const workHref = locale === "th" ? "#work" : localizePath(locale, "portfolio");
-  const servicesHref = locale === "th" ? "#services" : localizePath(locale, "services");
-  const contactHref = locale === "th" ? "#contact" : localizePath(locale, "contact");
-  const webDesignHref = locale === "th" ? "/th/web-design-bangkok" : "/web-design-bangkok";
+  const workHref = localizePath(locale, "portfolio");
   const getServiceHref = (index: number) => locale === "en" ? englishServiceLinks[index] ?? "/services" : thaiServiceLinks[index] ?? "/th/web-design-bangkok";
   const getIndustryHref = (index: number) => locale === "en" ? englishIndustryLinks[index] ?? "/web-design-bangkok" : thaiIndustryLinks[index] ?? "/th/web-design-bangkok";
   const thaiTypographyClass = locale === "th" ? "[&_h1]:!leading-[1.22] [&_h2]:!leading-[1.22] [&_h3]:!leading-[1.3] [&_p]:!leading-8 sm:[&_p]:!leading-9" : "";
-
-  const switchLanguage = (nextLocale: Locale) => {
-    if (nextLocale === locale) return;
-    document.cookie = `inphade-locale=${nextLocale}; path=/; max-age=31536000; SameSite=Lax`;
-    window.localStorage.setItem("inphade-locale", nextLocale);
-    router.push(getAlternatePath(pathname, nextLocale));
-  };
 
   const schema = {
     "@context": "https://schema.org",
@@ -141,58 +128,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
         <div className="mesh absolute inset-0" />
         <div className="grid-surface absolute inset-0 opacity-70" />
         <div className="pointer-events-none absolute inset-x-0 top-24 mx-auto h-[27rem] max-w-4xl bg-[radial-gradient(circle_at_center,rgba(31,122,83,0.08),transparent_70%)]" />
-        <nav className="glass relative z-20 mx-auto flex max-w-7xl items-center justify-between rounded-full px-4 py-3">
-          <a href={localizePath(locale)} className="flex items-center gap-3" aria-label={t.nav.home}>
-            <Image
-              src="/brand/inphade-logo.png"
-              alt="Inphade"
-              width={52}
-              height={52}
-              priority
-              className="h-10 w-10 rounded-md object-contain sm:h-12 sm:w-12"
-            />
-            <span className="text-xl font-semibold tracking-normal text-brandNavy sm:text-2xl">Inphade</span>
-          </a>
-          <div className="hidden items-center gap-7 text-sm font-medium text-muted md:flex">
-            <a href={workHref} onClick={() => track("portfolio_view")} className="hover:text-ink">{t.nav.work}</a>
-            <a href={servicesHref} className="hover:text-ink">{t.nav.services}</a>
-            <a href={webDesignHref} className="hover:text-ink">{locale === "th" ? "ออกแบบเว็บไซต์" : "Web Design"}</a>
-            <a href="#process" className="hover:text-ink">{t.nav.process}</a>
-            <a href={contactHref} className="hover:text-ink">{t.nav.contact}</a>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1 text-xs font-semibold text-muted" aria-label={t.nav.language}>
-              <button
-                type="button"
-                onClick={() => switchLanguage("en")}
-                className={`rounded-full px-2 py-1 transition ${locale === "en" ? "bg-[#E8F5EE] text-accent" : "hover:text-ink"}`}
-                aria-pressed={locale === "en"}
-              >
-                EN
-              </button>
-              <span className="text-line">|</span>
-              <button
-                type="button"
-                onClick={() => switchLanguage("th")}
-                className={`rounded-full px-2 py-1 transition ${locale === "th" ? "bg-[#E8F5EE] text-accent" : "hover:text-ink"}`}
-                aria-pressed={locale === "th"}
-              >
-                TH
-              </button>
-            </div>
-            <a
-              href={navCtaHref}
-              target={locale === "th" ? undefined : "_blank"}
-              rel={locale === "th" ? undefined : "noopener noreferrer"}
-              onClick={() => {
-                if (locale === "en") track("whatsapp_click");
-              }}
-              className="focus-ring hidden items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white sm:inline-flex"
-            >
-              {t.nav.book} <ArrowRight size={15} />
-            </a>
-          </div>
-        </nav>
+        <SiteHeader locale={locale} />
         <div className="relative z-10 mx-auto max-w-7xl pt-36 text-center sm:pt-44">
           <h1
             className={`mx-auto max-w-4xl font-semibold leading-[1.08] tracking-normal text-brandNavy ${
@@ -254,12 +190,16 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
         </div>
         <div className="mt-10 overflow-hidden">
           <div className="concept-track flex w-max gap-6 px-5 sm:px-8">
-            {[...concepts, ...concepts].map((concept, index) => (
-              <div key={`${concept.id}-${index}`} className="w-[340px] rounded-lg border border-line bg-white p-3 shadow-sm sm:w-[440px]">
+            {[...concepts, ...concepts].map((concept, index) => {
+              const isClone = index >= concepts.length;
+
+              return (
+              <div key={`${concept.id}-${index}`} aria-hidden={isClone} className="w-[340px] rounded-lg border border-line bg-white p-3 shadow-sm sm:w-[440px]">
                 <GalleryImageMockup title={concept.title} src={conceptImages[concept.id]} />
                 <div className="px-2 pt-4 text-lg font-semibold text-ink">{concept.title}</div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -423,58 +363,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
         </div>
       </section>
 
-      <footer className="border-t border-line bg-ink px-5 py-14 text-white sm:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-10 md:grid-cols-[1.25fr_0.75fr_0.75fr_0.75fr]">
-            <div>
-              <a href={localizePath(locale)} className="inline-flex items-center" aria-label={t.nav.home}>
-                <Image
-                  src="/brand/inphade-logo.png"
-                  alt="Inphade"
-                  width={56}
-                  height={56}
-                  className="h-14 w-14 rounded-lg object-contain"
-                />
-              </a>
-              <p className="mt-4 max-w-md leading-7 text-slate-300">
-                {t.footer.description}
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{t.footer.contact}</h3>
-                <a href="mailto:hello@inphade.com" onClick={() => track("email_click")} className="mt-4 block text-slate-300 transition hover:text-white">
-                  hello@inphade.com
-                </a>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{t.footer.services}</h3>
-              <div className="mt-4 grid gap-3 text-slate-300">
-                {t.services.items.map((service, index) => (
-                  <a key={service.title} href={getServiceHref(index)} className="transition hover:text-white">
-                    {service.title}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{t.footer.company}</h3>
-              <div className="mt-4 grid gap-3 text-slate-300">
-                <a href={locale === "en" ? "/about" : localizePath(locale)} className="transition hover:text-white">{t.footer.about}</a>
-                <a href="#process" className="transition hover:text-white">{t.footer.process}</a>
-                <a href={workHref} onClick={() => track("portfolio_view")} className="transition hover:text-white">{t.footer.portfolio}</a>
-                <a href={contactHref} className="transition hover:text-white">{t.footer.contact}</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 border-t border-white/10 pt-6 text-sm text-slate-400">
-            {t.footer.copyright}
-          </div>
-        </div>
-      </footer>
+      <SiteFooter locale={locale} />
     </main>
   );
 }

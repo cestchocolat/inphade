@@ -1,11 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { ArrowRight, Check, Globe2, Mail, MessageCircle, Send } from "lucide-react";
 import { localizePath } from "@/lib/routes";
 import type { Locale } from "@/lib/routes";
 import type { LandingPage } from "@/lib/pages";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 
 const whatsAppUrls: Record<Locale, string> = {
   en: `https://wa.me/66613306922?text=${encodeURIComponent("Hi! I'm interested in building a website with Inphade. I'd like to get a free proposal.")}`,
@@ -20,93 +21,6 @@ function track(event: string, params?: Record<string, unknown>) {
     return;
   }
   win.dataLayer?.push({ event, ...params });
-}
-
-function Nav({ locale }: { locale: Locale }) {
-  const isThai = locale === "th";
-  const whatsAppUrl = whatsAppUrls[locale];
-
-  return (
-    <nav className="glass relative z-20 mx-auto flex max-w-7xl items-center justify-between rounded-full px-4 py-3">
-      <a href={localizePath(locale)} className="flex items-center gap-3" aria-label="Inphade home">
-        <Image
-          src="/brand/inphade-logo.png"
-          alt="Inphade"
-          width={52}
-          height={52}
-          priority
-          className="h-10 w-10 rounded-md object-contain sm:h-12 sm:w-12"
-        />
-        <span className="text-xl font-semibold tracking-normal text-brandNavy sm:text-2xl">Inphade</span>
-      </a>
-      <div className="hidden items-center gap-7 text-sm font-medium text-muted md:flex">
-        <a href={isThai ? "/th#work" : "/portfolio"} className="hover:text-ink">{isThai ? "ผลงาน" : "Portfolio"}</a>
-        <a href={isThai ? "/th#services" : "/website-development-bangkok"} className="hover:text-ink">{isThai ? "บริการ" : "Development"}</a>
-        <a href={localizePath(locale, "web-design-bangkok")} className="hover:text-ink">{isThai ? "ออกแบบเว็บไซต์" : "Web Design"}</a>
-        <a href={isThai ? "/th#process" : "/insights"} className="hover:text-ink">{isThai ? "ขั้นตอนการทำงาน" : "Insights"}</a>
-        <a href={isThai ? "#lead-form" : "/contact"} className="hover:text-ink">{isThai ? "ติดต่อเรา" : "Contact"}</a>
-      </div>
-      <a
-        href={isThai ? "#lead-form" : whatsAppUrl}
-        target={isThai ? undefined : "_blank"}
-        rel={isThai ? undefined : "noopener noreferrer"}
-        onClick={() => {
-          if (!isThai) track("whatsapp_click");
-        }}
-        className="focus-ring hidden items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white sm:inline-flex"
-      >
-        {isThai ? "ขอใบเสนอราคา" : "Get a Proposal"} <ArrowRight size={15} />
-      </a>
-    </nav>
-  );
-}
-
-function Footer({ locale }: { locale: Locale }) {
-  const isThai = locale === "th";
-
-  return (
-    <footer className="border-t border-line bg-ink px-5 py-14 text-white sm:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
-        <div>
-          <Image src="/brand/inphade-logo.png" alt="Inphade" width={56} height={56} className="h-14 w-14 rounded-lg object-contain" />
-          <p className="mt-4 max-w-md leading-7 text-slate-300">
-            {isThai
-              ? "เว็บไซต์พรีเมียมและประสบการณ์ดิจิทัลเพื่อธุรกิจที่ต้องการเติบโตในกรุงเทพและประเทศไทย"
-              : "Premium websites, digital experiences and growth-focused solutions for modern businesses in Bangkok and Thailand."}
-          </p>
-        </div>
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{isThai ? "บริการ" : "Services"}</h2>
-          <div className="mt-4 grid gap-3 text-slate-300">
-            <a href={localizePath(locale, "web-design-bangkok")} className="transition hover:text-white">{isThai ? "รับทำเว็บไซต์" : "Web Design"}</a>
-            {isThai && <a href="/th/website-development-bangkok" className="transition hover:text-white">พัฒนาเว็บไซต์</a>}
-            {isThai && <a href="/th/website-redesign-bangkok" className="transition hover:text-white">รีดีไซน์เว็บไซต์</a>}
-            <a href={isThai ? localizePath(locale, "company-website") : "/website-development-bangkok"} className="transition hover:text-white">{isThai ? "เว็บไซต์บริษัท" : "Development"}</a>
-            {!isThai && <a href="/website-redesign-bangkok" className="transition hover:text-white">Redesign</a>}
-          </div>
-        </div>
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{isThai ? "อุตสาหกรรม" : "Industries"}</h2>
-          <div className="mt-4 grid gap-3 text-slate-300">
-            <a href={localizePath(locale, "real-estate-web-design")} className="transition hover:text-white">{isThai ? "อสังหาริมทรัพย์" : "Real Estate"}</a>
-            <a href={localizePath(locale, "clinic-web-design")} className="transition hover:text-white">{isThai ? "คลินิก" : "Clinics"}</a>
-            <a href={localizePath(locale, "hotel-web-design")} className="transition hover:text-white">{isThai ? "โรงแรม" : "Hotels"}</a>
-            <a href={localizePath(locale, "restaurant-web-design")} className="transition hover:text-white">{isThai ? "ร้านอาหาร" : "Restaurants"}</a>
-          </div>
-        </div>
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{isThai ? "บริษัท" : "Company"}</h2>
-          <div className="mt-4 grid gap-3 text-slate-300">
-            {!isThai && <a href="/about" className="transition hover:text-white">About</a>}
-            {!isThai && <a href="/portfolio" className="transition hover:text-white">Portfolio</a>}
-            {!isThai && <a href="/insights" className="transition hover:text-white">Insights</a>}
-            <a href={isThai ? "#lead-form" : "/contact"} className="transition hover:text-white">{isThai ? "ติดต่อเรา" : "Contact"}</a>
-            <a href="mailto:hello@inphade.com" onClick={() => track("email_click")} className="transition hover:text-white">hello@inphade.com</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
 }
 
 function EnquiryForm({ page }: { page: LandingPage }) {
@@ -296,11 +210,93 @@ function ThaiLeadForm({ page }: { page: LandingPage }) {
   );
 }
 
+function SectionItems({ items }: { items?: string[] }) {
+  if (!items) return null;
+
+  return (
+    <div className="mt-7 grid gap-3 sm:grid-cols-2">
+      {items.map((item) => (
+        <div key={item} className="flex gap-3 rounded-lg bg-[#F7FAF8] p-4">
+          <Check className="mt-0.5 shrink-0 text-accent" size={18} />
+          <span className="font-medium text-ink">{item}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PortfolioSections({ page, locale, sectionIds }: { page: LandingPage; locale: Locale; sectionIds: string[] }) {
+  const isThai = locale === "th";
+
+  return (
+    <section className="bg-[#F7FAF8] px-5 py-20 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {page.sections.map((section, index) => (
+            <article
+              key={section.title}
+              id={sectionIds[index]}
+              className={`rounded-lg border border-line bg-white p-7 shadow-[0_10px_30px_rgba(7,21,56,0.045)] ${
+                index === 0 || index === 5 ? "xl:translate-y-8" : ""
+              }`}
+            >
+              <div className="mb-8 h-1 w-14 rounded-full bg-[#A4D0BE]" />
+              <p className="text-sm font-semibold uppercase text-accent">{section.title}</p>
+              <p className="mt-5 text-xl font-semibold leading-8 text-brandNavy">{section.body}</p>
+              <SectionItems items={section.items} />
+            </article>
+          ))}
+        </div>
+        <div className="mt-20 rounded-lg bg-ink p-8 text-white sm:p-10">
+          <h2 className="text-3xl font-semibold">{page.cta}</h2>
+          <p className="mt-4 max-w-3xl leading-8 text-slate-300">{page.ctaNote}</p>
+          <a href={localizePath(locale, "contact")} className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-semibold text-ink">
+            {isThai ? "ติดต่อ Inphade" : "Contact Inphade"} <ArrowRight size={16} />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutSections({ page, locale, sectionIds }: { page: LandingPage; locale: Locale; sectionIds: string[] }) {
+  const isThai = locale === "th";
+
+  return (
+    <section className="bg-white px-5 py-20 sm:px-8 sm:py-28">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.45fr_0.55fr]">
+        <div>
+          <p className="text-sm font-semibold uppercase text-accent">{page.eyebrow}</p>
+          <h2 className="mt-4 text-4xl font-semibold text-brandNavy sm:text-5xl">{page.sections[0]?.title}</h2>
+        </div>
+        <div className="grid gap-6">
+          {page.sections.map((section, index) => (
+            <article key={section.title} id={sectionIds[index]} className="border-t border-line pt-7">
+              <h3 className="text-2xl font-semibold text-ink">{section.title}</h3>
+              <p className="mt-4 text-lg leading-8 text-muted">{section.body}</p>
+              <SectionItems items={section.items} />
+            </article>
+          ))}
+        </div>
+      </div>
+      <div className="mx-auto mt-20 max-w-7xl rounded-lg bg-[#F7FAF8] p-8 sm:p-10">
+        <h2 className="text-3xl font-semibold text-brandNavy">{page.cta}</h2>
+        <p className="mt-4 max-w-3xl leading-8 text-muted">{page.ctaNote}</p>
+        <a href={localizePath(locale, "contact")} className="mt-7 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 font-semibold text-white">
+          {isThai ? "ติดต่อเรา" : "Contact Inphade"} <ArrowRight size={16} />
+        </a>
+      </div>
+    </section>
+  );
+}
+
 export function LandingPage({ page, locale }: { page: LandingPage; locale: Locale }) {
   const isContact = page.kind === "contact";
   const isThai = locale === "th";
   const whatsAppUrl = whatsAppUrls[locale];
-  const sectionIds = page.sections.map((_, index) => `section-${index + 1}`);
+  const sectionIds = page.sections.map((section, index) => section.id ?? `section-${index + 1}`);
+  const focusLabel = page.kind === "industry" ? (isThai ? "สิ่งที่โฟกัส" : "Industry Focus") : (isThai ? "ภาพรวมโปรเจกต์" : "Project Focus");
+  const form = isThai ? <ThaiLeadForm page={page} /> : <EnquiryForm page={page} />;
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -316,7 +312,7 @@ export function LandingPage({ page, locale }: { page: LandingPage; locale: Local
       <section className="relative px-5 pb-20 pt-6 sm:px-8 sm:pb-28">
         <div className="mesh absolute inset-0" />
         <div className="grid-surface absolute inset-0 opacity-70" />
-        <Nav locale={locale} />
+        <SiteHeader locale={locale} />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-10 pt-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div>
             <p className="mb-4 text-sm font-semibold uppercase text-accent">{page.eyebrow}</p>
@@ -324,7 +320,7 @@ export function LandingPage({ page, locale }: { page: LandingPage; locale: Local
             <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl">{page.intro}</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a
-                href={isThai ? "#lead-form" : whatsAppUrl}
+                href={isThai ? (isContact ? "#lead-form" : localizePath(locale, "contact")) : whatsAppUrl}
                 target={isThai ? undefined : "_blank"}
                 rel={isThai ? undefined : "noopener noreferrer"}
                 onClick={() => {
@@ -359,14 +355,10 @@ export function LandingPage({ page, locale }: { page: LandingPage; locale: Local
             </div>
           </div>
           <div className="rounded-lg border border-line bg-white p-6 shadow-premium">
-            <h2 className="text-2xl font-semibold text-ink">{isContact || isThai ? (isThai ? "ขอใบเสนอราคา" : "Project Enquiry") : "What This Page Covers"}</h2>
-            {isThai ? (
+            <h2 className="text-2xl font-semibold text-ink">{isContact ? (isThai ? "ขอใบเสนอราคา" : "Project Enquiry") : focusLabel}</h2>
+            {isContact ? (
               <div className="mt-6">
-                <ThaiLeadForm page={page} />
-              </div>
-            ) : isContact ? (
-              <div className="mt-6">
-                <EnquiryForm page={page} />
+                {form}
               </div>
             ) : (
               <div className="mt-6 grid gap-3">
@@ -382,23 +374,32 @@ export function LandingPage({ page, locale }: { page: LandingPage; locale: Local
         </div>
       </section>
 
+      {page.kind === "portfolio" ? (
+        <PortfolioSections page={page} locale={locale} sectionIds={sectionIds} />
+      ) : page.kind === "company" ? (
+        <AboutSections page={page} locale={locale} sectionIds={sectionIds} />
+      ) : (
       <section className="bg-white px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_0.28fr]">
           <div className="grid gap-10">
             {page.sections.map((section, index) => (
-              <article key={section.title} id={sectionIds[index]} className="rounded-lg border border-line bg-white p-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)] sm:p-9">
-                <h2 className="text-3xl font-semibold text-brandNavy">{section.title}</h2>
-                <p className="mt-5 text-lg leading-8 text-muted">{section.body}</p>
-                {section.items && (
-                  <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                    {section.items.map((item) => (
-                      <div key={item} className="flex gap-3 rounded-lg bg-[#F7FAF8] p-4">
-                        <Check className="mt-0.5 shrink-0 text-accent" size={18} />
-                        <span className="font-medium text-ink">{item}</span>
-                      </div>
-                    ))}
+              <article
+                key={section.title}
+                id={sectionIds[index]}
+                className={`rounded-lg border border-line p-7 sm:p-9 ${
+                  index % 2 === 0 ? "bg-white shadow-[0_8px_24px_rgba(0,0,0,0.04)]" : "bg-[#F7FAF8]"
+                }`}
+              >
+                <div className="flex items-start gap-5">
+                  <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#E8F5EE] text-sm font-semibold text-accent">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h2 className="text-3xl font-semibold text-brandNavy">{section.title}</h2>
+                    <p className="mt-5 text-lg leading-8 text-muted">{section.body}</p>
                   </div>
-                )}
+                </div>
+                <SectionItems items={section.items} />
               </article>
             ))}
           </div>
@@ -436,7 +437,8 @@ export function LandingPage({ page, locale }: { page: LandingPage; locale: Local
           </aside>
         </div>
       </section>
-      <Footer locale={locale} />
+      )}
+      <SiteFooter locale={locale} />
     </main>
   );
 }

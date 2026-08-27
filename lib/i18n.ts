@@ -11,7 +11,7 @@ export const dictionaries = {
     },
     nav: {
       home: "Inphade home",
-      work: "Work",
+      work: "Portfolio",
       services: "Services",
       process: "Process",
       contact: "Contact",
@@ -20,7 +20,7 @@ export const dictionaries = {
     },
     hero: {
       eyebrow: "",
-      headline: "Web Design & Development in Bangkok Built for Growth",
+      headline: "Web Design & Development Built for Growth",
       subheadline:
         "Inphade designs and develops fast, conversion-focused websites for businesses in Bangkok and across Thailand, combining strategy, design, development and SEO foundations in one build.",
       primary: "Get a Free Website Proposal",

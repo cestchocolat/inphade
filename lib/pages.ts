@@ -3,7 +3,7 @@ import { thaiPages } from "@/lib/thai-pages";
 
 export const siteUrl = "https://www.inphade.com";
 
-export type PageKind = "service" | "industry" | "company" | "portfolio" | "insights" | "contact";
+export type PageKind = "service" | "industry" | "company" | "portfolio" | "contact";
 
 export type LandingPage = {
   slug: RouteSlug;
@@ -16,6 +16,7 @@ export type LandingPage = {
   cta: string;
   ctaNote: string;
   sections: Array<{
+    id?: string;
     title: string;
     body: string;
     items?: string[];
@@ -44,6 +45,16 @@ export const pages: Record<RouteSlug, LandingPage> = {
         items: ["Website design", "Website development", "Website redesign", "Landing pages", "SEO foundation", "Website maintenance"]
       },
       {
+        id: "seo-foundation",
+        title: "SEO Foundation",
+        body: "Technical foundations are planned early: crawlable pages, clear metadata, clean sitemap output, internal links, fast loading patterns and page structures that support future search visibility."
+      },
+      {
+        id: "ongoing-support",
+        title: "Ongoing Support",
+        body: "After launch, support can cover content updates, small improvements, technical monitoring and practical iteration so the website stays accurate, fast and useful as the business changes."
+      },
+      {
         title: "Built for Performance and Leads",
         body: "We focus on clear content structure, mobile usability, conversion pathways, technical SEO basics and analytics-ready implementation so the website can support growth after launch."
       }
@@ -58,22 +69,43 @@ export const pages: Record<RouteSlug, LandingPage> = {
   portfolio: {
     slug: "portfolio",
     kind: "portfolio",
-    title: "Portfolio & Website Concepts | Inphade",
-    description: "Explore Inphade website concepts and the structure for future verified case studies across real estate, hotels, clinics, restaurants and more.",
-    h1: "Website Concepts and Future Case Studies",
+    title: "Selected Website Concepts | Inphade",
+    description: "Explore selected Inphade concept directions across real estate, clinics, hotels, restaurants, SaaS and professional services.",
+    h1: "Selected Website Concepts",
     eyebrow: "Portfolio",
-    intro: "The current showcase presents design concepts that demonstrate visual direction and industry fit. They are not presented as client case studies or verified business results.",
-    cta: "Discuss a Website Like This",
-    ctaNote: "When verified client work is available, future case studies can include client, industry, problem, solution, features and results.",
+    intro: "Selected concept directions exploring how strategy, design and development can come together across different industries, user journeys, positioning and conversion goals. Concept work shown for design exploration.",
+    cta: "Have a project in mind?",
+    ctaNote: "Share the business context and we will help shape a website direction that feels specific, credible and ready to convert.",
     sections: [
       {
-        title: "Current Showcase",
-        body: "The concept gallery helps businesses understand the quality, direction and type of digital experience Inphade can design. It should be treated as concept work unless a project is clearly labelled as a real client case study.",
-        items: ["Luxury real estate concept", "Clinic and medical concept", "Hotel concept", "Restaurant concept", "Startup and professional services concepts"]
+        title: "Luxury Real Estate",
+        body: "Premium positioning, high-value property presentation and qualified enquiry generation.",
+        items: ["Property discovery", "Project storytelling", "Lead conversion", "Mobile-first browsing"]
       },
       {
-        title: "Case Study Foundation",
-        body: "Future work pages can be structured around the client context, business challenge, solution, website features and verified outcomes without inventing claims before they are documented."
+        title: "Clinic & Medical",
+        body: "Trust, clarity and a frictionless path from service discovery to enquiry or booking.",
+        items: ["Service hierarchy", "Provider credibility", "Location clarity", "Appointment intent"]
+      },
+      {
+        title: "Hotel & Hospitality",
+        body: "Brand experience, destination storytelling and direct booking intent.",
+        items: ["Room presentation", "Offer discovery", "Guest journey", "Booking pathway"]
+      },
+      {
+        title: "Restaurant & Cafe",
+        body: "Fast mobile decisions supported by menus, location details and a clear reservation or enquiry path.",
+        items: ["Menu structure", "Local discovery", "Mobile UX", "Reservation intent"]
+      },
+      {
+        title: "Modern Startup / SaaS",
+        body: "Clear value proposition, product understanding and conversion for teams selling something new.",
+        items: ["Product clarity", "Feature communication", "Trust signals", "Demo or enquiry flow"]
+      },
+      {
+        title: "Professional Services / Finance",
+        body: "Credibility, authority and structured service communication for expert-led businesses.",
+        items: ["Expert positioning", "Service architecture", "Consultation journey", "Content clarity"]
       }
     ],
     links: [
@@ -138,46 +170,12 @@ export const pages: Record<RouteSlug, LandingPage> = {
       { label: "Contact", href: "/contact" }
     ]
   },
-  insights: {
-    slug: "insights",
-    kind: "insights",
-    title: "Website Insights for Bangkok Businesses | Inphade",
-    description: "A foundation for practical website design, development, cost, SEO and conversion insights for businesses in Bangkok and Thailand.",
-    h1: "Website Insights for Better Business Decisions",
-    eyebrow: "Insights",
-    intro: "This section is prepared for substantial, practical guides on website planning, costs, redesign decisions, SEO foundations and conversion-focused strategy.",
-    cta: "Ask About Your Website",
-    ctaNote: "No thin article library has been published; the architecture is ready for useful future content.",
-    sections: [
-      {
-        title: "Planned High-Intent Topics",
-        body: "Future articles should answer real commercial questions in depth and link naturally to relevant services.",
-        items: [
-          "How much does a website cost in Bangkok?",
-          "Website design cost in Thailand: what businesses should expect",
-          "How long does it take to build a business website?",
-          "Signs your business website needs a redesign",
-          "What should a real estate website include?",
-          "Website SEO checklist before launch"
-        ]
-      },
-      {
-        title: "Content Standard",
-        body: "Each guide should be written from real project knowledge, avoid fake metrics or guarantees, and help a business make a better decision before contacting Inphade."
-      }
-    ],
-    links: [
-      { label: "Website redesign", href: "/website-redesign-bangkok" },
-      { label: "Real estate website design", href: "/real-estate-web-design" },
-      { label: "Contact", href: "/contact" }
-    ]
-  },
   "web-design-bangkok": {
     slug: "web-design-bangkok",
     kind: "service",
     title: "Web Design Bangkok | Custom Business Websites | Inphade",
     description: "Custom web design and development in Bangkok for businesses that need a fast, professional website built to generate leads and support long-term growth.",
-    h1: "Web Design Bangkok for Businesses That Want More Than a Beautiful Website",
+    h1: "Web Design for Bangkok Businesses Ready to Grow",
     eyebrow: "Web Design Bangkok",
     intro: "Inphade designs and develops fast, conversion-focused websites for international businesses, expatriate-owned companies and Thailand-based teams that need a polished English-language website built for trust and enquiries.",
     cta: "Get a Free Website Proposal",
@@ -221,7 +219,7 @@ export const pages: Record<RouteSlug, LandingPage> = {
     kind: "service",
     title: "Website Development Bangkok | Custom Web Development | Inphade",
     description: "Website development in Bangkok for businesses that need fast, responsive, maintainable and SEO-ready websites with room to grow.",
-    h1: "Website Development Bangkok for Fast, Maintainable Business Websites",
+    h1: "Website Development Built for Speed, Scale and Reliability",
     eyebrow: "Website Development",
     intro: "Inphade develops responsive, maintainable websites for businesses operating in Bangkok and Thailand, with attention to performance, search visibility, analytics and practical future growth.",
     cta: "Discuss a Development Project",
@@ -256,7 +254,7 @@ export const pages: Record<RouteSlug, LandingPage> = {
     kind: "service",
     title: "Website Redesign Bangkok | Modern Business Websites | Inphade",
     description: "Website redesign in Bangkok for businesses with outdated design, slow performance, weak mobile UX or poor conversion paths.",
-    h1: "Website Redesign Bangkok for Businesses Outgrowing Their Current Site",
+    h1: "Website Redesign for Businesses Ready for a Stronger Online Presence",
     eyebrow: "Website Redesign",
     intro: "A redesign should protect what is already working while improving clarity, performance, mobile usability, search foundations and the path from visitor interest to enquiry.",
     cta: "Request a Website Review",
@@ -282,7 +280,7 @@ export const pages: Record<RouteSlug, LandingPage> = {
     links: [
       { label: "Web design Bangkok", href: "/web-design-bangkok" },
       { label: "Website development", href: "/website-development-bangkok" },
-      { label: "Website redesign insights", href: "/insights" }
+      { label: "Contact Inphade", href: "/contact" }
     ]
   },
   "company-website": {
@@ -307,7 +305,7 @@ export const pages: Record<RouteSlug, LandingPage> = {
       },
       {
         title: "Built for Future Growth",
-        body: "The right structure makes it easier to add future pages, campaigns, insights, hiring content or business information without rebuilding the website from scratch."
+        body: "The right structure makes it easier to add future pages, campaigns, hiring content or business information without rebuilding the website from scratch."
       }
     ],
     links: [
@@ -461,7 +459,7 @@ export const pages: Record<RouteSlug, LandingPage> = {
       },
       {
         title: "Useful Website Elements",
-        body: "A professional services website can include service pages, team or professional profiles, case study structures, insights, consultation CTAs, contact forms, SEO foundations and analytics-ready enquiry tracking.",
+        body: "A professional services website can include service pages, team or professional profiles, proof structures, consultation CTAs, contact forms, SEO foundations and analytics-ready enquiry tracking.",
         items: ["Service pages", "Professional profiles", "Case study structure", "Consultation CTAs", "Thought leadership", "Analytics foundations"]
       },
       {
