@@ -425,7 +425,7 @@ function ProjectsPage({ page, locale }: { page: LandingPage; locale: Locale }) {
         <div className="relative z-10 mx-auto max-w-7xl pt-14 sm:pt-16 lg:pt-20">
           <div className="max-w-4xl">
             <p className="mb-5 text-sm font-semibold uppercase text-accent">{page.eyebrow}</p>
-            <h1 className="text-[30px] font-semibold leading-[1.04] tracking-normal text-brandNavy sm:text-[30px] lg:text-[48px]">
+            <h1 className="text-[30px] font-semibold leading-[1.04] tracking-normal text-brandNavy sm:text-[30px] lg:text-[36px]">
               {heroLines.map((line) => (
                 <span key={line} className="block">{line}</span>
               ))}
