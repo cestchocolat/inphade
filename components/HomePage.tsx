@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
+import { brandLogoPath } from "@/lib/brand";
 import { localizePath } from "@/lib/routes";
 import type { Locale } from "@/lib/routes";
 import type { Dictionary } from "@/lib/i18n";
@@ -146,22 +147,22 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
     name: "Inphade",
     url: "https://www.inphade.com/",
     description: t.schema.description,
-    logo: "https://www.inphade.com/brand/inphade-logo.png",
+    logo: `https://www.inphade.com${brandLogoPath}`,
     email: "hello@inphade.com"
   };
 
   return (
     <main className={`overflow-hidden bg-white ${thaiTypographyClass}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <section className="relative overflow-visible px-5 pb-40 pt-6 sm:px-8 sm:pb-44">
+      <section className="relative overflow-visible px-5 pb-40 pt-6 sm:px-8 sm:pb-44 lg:pb-32 desktop-section-pb">
         <div className="mesh absolute inset-0" />
         <div className="grid-surface absolute inset-0 opacity-70" />
         <div className="pointer-events-none absolute inset-x-0 top-24 mx-auto h-[27rem] max-w-4xl bg-[radial-gradient(circle_at_center,rgba(31,122,83,0.08),transparent_70%)]" />
         <SiteHeader locale={locale} />
-        <div className="relative z-10 mx-auto max-w-7xl pt-36 text-center sm:pt-44">
+        <div className="relative z-10 mx-auto max-w-7xl pt-[8.1rem] text-center sm:pt-44 lg:pt-32">
           <h1
             className={`mx-auto max-w-4xl font-semibold leading-[1.08] tracking-normal text-brandNavy ${
-              locale === "th" ? "text-[2.2rem] sm:text-[2.75rem] lg:text-[3.2rem]" : "text-[2.05rem] sm:text-[3rem] lg:text-[3.6rem]"
+              locale === "th" ? "text-[30px] sm:text-[30px] lg:text-[50px]" : "text-[30px] sm:text-[30px] lg:text-[50px]"
             }`}
           >
             {t.hero.headline}
@@ -214,10 +215,10 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
         </div>
       </section>
 
-      <section id="work" className="bg-[#F7FAF8] py-24 sm:py-32">
+      <section id="work" className="bg-[#F7FAF8] py-24 sm:py-32 desktop-section-y">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <p className="mb-3 text-sm font-semibold uppercase text-accent">{t.gallery.label}</p>
-          <h2 className={`max-w-3xl font-semibold text-brandNavy ${locale === "th" ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"}`}>{t.gallery.heading}</h2>
+          <h2 className="max-w-3xl text-[25px] font-semibold text-brandNavy sm:text-[30px]">{t.gallery.heading}</h2>
         </div>
         <div className="mt-10 overflow-hidden">
           <div className="concept-track flex w-max gap-6 px-5 sm:px-8">
@@ -237,7 +238,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
 
       <section
         id="services"
-        className="relative overflow-hidden bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FFFC_52%,#F2FBF7_100%)] py-24 sm:py-32"
+        className="relative overflow-hidden bg-[linear-gradient(180deg,#FFFFFF_0%,#F8FFFC_52%,#F2FBF7_100%)] py-24 sm:py-32 desktop-section-y"
       >
         <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-[#A7F3D0]/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-40 -right-28 h-[28rem] w-[28rem] rounded-full bg-[#D1FAE5]/30 blur-3xl" />
@@ -245,7 +246,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
           <div className="relative mb-12 max-w-3xl">
             <div className="pointer-events-none absolute -left-8 -top-8 h-32 w-72 rounded-full bg-[rgba(23,108,75,0.12)] blur-3xl" />
             <p className="mb-3 text-sm font-semibold uppercase text-accent">{t.services.label}</p>
-            <h2 className="services-heading-gradient relative text-3xl font-semibold sm:text-4xl">{t.services.heading}</h2>
+            <h2 className="services-heading-gradient relative text-[25px] font-semibold sm:text-[30px]">{t.services.heading}</h2>
           </div>
           <div className="grid gap-x-12 gap-y-0 border-y border-line/80 md:grid-cols-2">
             {services.map(({ title, Icon, description }, index) => (
@@ -259,7 +260,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
                     <Icon size={28} strokeWidth={1.8} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold text-ink">{title}</h3>
+                    <h3 className="text-[25px] font-semibold text-ink sm:text-[30px]">{title}</h3>
                     <p className="mt-4 max-w-xl leading-7 text-muted">{description}</p>
                     <a href={getServiceHref(index)} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent">
                       {locale === "th" ? "ดูรายละเอียด" : "Learn more"} <ArrowRight size={15} />
@@ -272,12 +273,12 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
         </div>
       </section>
 
-      <section id="process" className="relative overflow-hidden bg-ink py-28 sm:py-36">
+      <section id="process" className="relative overflow-hidden bg-ink py-28 sm:py-36 desktop-section-y">
         <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] [background-size:44px_44px]" />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <p className="mb-3 text-sm font-semibold uppercase text-[#A7F3D0]">{t.process.label}</p>
-          <h2 className="max-w-3xl text-4xl font-semibold text-white sm:text-5xl">{t.process.heading}</h2>
+          <h2 className="max-w-3xl text-[25px] font-semibold text-white sm:text-[30px]">{t.process.heading}</h2>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
             {t.process.subheading}
           </p>
@@ -317,7 +318,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
               >
                 <div className="relative z-10 mt-2 h-3 w-3 rounded-full border border-[#A7F3D0]/70 bg-[#A7F3D0]" />
                 <div className="rounded-lg border border-white/8 bg-white/[0.045] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.14)] backdrop-blur-md">
-                  <h3 className="text-lg font-semibold text-[#A7F3D0]">{title}</h3>
+                  <h3 className="text-[25px] font-semibold text-[#A7F3D0]">{title}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
                 </div>
               </div>
@@ -326,11 +327,11 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
         </div>
       </section>
 
-      <section className="bg-[#F2F8F5] py-24 sm:py-32">
+      <section className="bg-[#F2F8F5] py-24 sm:py-32 desktop-section-y">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mb-12 max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase text-accent">{t.industries.label}</p>
-            <h2 className="text-4xl font-semibold text-brandNavy sm:text-5xl">{t.industries.heading}</h2>
+            <h2 className="text-[25px] font-semibold text-brandNavy sm:text-[30px]">{t.industries.heading}</h2>
             <p className="mt-5 text-lg leading-8 text-muted">
               {t.industries.subheading}
             </p>
@@ -345,7 +346,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
                 <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-lg bg-[#E8F5EE] text-[#1F7A53]">
                   <Icon size={30} strokeWidth={1.8} />
                 </div>
-                <h3 className="text-xl font-semibold text-ink">{title}</h3>
+                <h3 className="text-[25px] font-semibold text-ink sm:text-[30px]">{title}</h3>
                 <p className="mt-4 text-sm leading-6 text-muted">{description}</p>
                 <a href={getIndustryHref(index)} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent">
                   {locale === "th" ? "ดูบริการ" : "View service"} <ArrowRight size={15} />
@@ -356,11 +357,11 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
         </div>
       </section>
 
-      <section id="contact" className="bg-white px-5 py-24 sm:px-8 sm:py-32">
+      <section id="contact" className="bg-white px-5 py-24 sm:px-8 sm:py-32 desktop-section-y">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-lg bg-ink p-8 text-center text-white shadow-premium sm:p-16">
           <div className="mx-auto max-w-4xl">
             <Layers3 className="mx-auto mb-8 text-[#8FBFA8]" size={38} />
-            <h2 className="text-4xl font-semibold sm:text-6xl">{t.cta.headline}</h2>
+            <h2 className="text-[25px] font-semibold sm:text-[30px]">{t.cta.headline}</h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
               {t.cta.subheadline}
             </p>

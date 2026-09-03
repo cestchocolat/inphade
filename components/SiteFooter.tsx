@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { BrandLogo } from "@/components/BrandLogo";
 import { localizePath } from "@/lib/routes";
 import type { Locale } from "@/lib/routes";
 
@@ -12,6 +12,8 @@ function track(event: string) {
   }
   win.dataLayer?.push({ event });
 }
+
+const footerHeadingClass = "text-[16px] font-semibold uppercase tracking-normal text-[#8FBFA8]";
 
 export function SiteFooter({ locale }: { locale: Locale }) {
   const isThai = locale === "th";
@@ -32,7 +34,6 @@ export function SiteFooter({ locale }: { locale: Locale }) {
   ];
 
   const companyLinks = [
-    { label: isThai ? "เกี่ยวกับเรา" : "About", href: localizePath(locale, "about") },
     { label: isThai ? "โปรเจกต์" : "Project", href: localizePath(locale, "project") },
     { label: isThai ? "ติดต่อ" : "Contact", href: localizePath(locale, "contact") }
   ];
@@ -42,7 +43,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_0.85fr_0.85fr_0.85fr]">
         <div>
           <a href={localizePath(locale)} className="inline-flex items-center" aria-label={isThai ? "หน้าแรก Inphade" : "Inphade home"}>
-            <Image src="/brand/inphade-logo.png" alt="Inphade" width={56} height={56} className="h-14 w-14 rounded-lg object-contain" />
+            <BrandLogo width={56} height={56} className="h-14 w-14 rounded-lg object-contain" />
           </a>
           <p className="mt-4 max-w-md leading-7 text-slate-300">
             {isThai
@@ -54,7 +55,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           </a>
         </div>
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{isThai ? "บริการ" : "Services"}</h2>
+          <h2 className={footerHeadingClass}>{isThai ? "บริการ" : "Services"}</h2>
           <div className="mt-4 grid gap-3 text-slate-300">
             {serviceLinks.map((link) => (
               <a key={link.href} href={link.href} className="transition hover:text-white">
@@ -64,7 +65,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{isThai ? "อุตสาหกรรม" : "Industries"}</h2>
+          <h2 className={footerHeadingClass}>{isThai ? "อุตสาหกรรม" : "Industries"}</h2>
           <div className="mt-4 grid gap-3 text-slate-300">
             {industryLinks.map((link) => (
               <a key={link.href} href={link.href} className="transition hover:text-white">
@@ -74,7 +75,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-normal text-[#8FBFA8]">{isThai ? "บริษัท" : "Company"}</h2>
+          <h2 className={footerHeadingClass}>{isThai ? "บริษัท" : "Company"}</h2>
           <div className="mt-4 grid gap-3 text-slate-300">
             {companyLinks.map((link) => (
               <a key={link.href} href={link.href} className="transition hover:text-white">

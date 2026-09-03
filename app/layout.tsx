@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { brandLogoPath } from "@/lib/brand";
 import { siteUrl } from "@/lib/pages";
 import "./globals.css";
 
@@ -24,15 +25,15 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/brand/inphade-logo.png",
-        width: 1024,
-        height: 1024,
+        url: brandLogoPath,
+        width: 760,
+        height: 760,
         alt: "Inphade logo"
       }
     ]
   },
   other: {
-    "og:logo": "/brand/inphade-logo.png"
+    "og:logo": brandLogoPath
   }
 };
 

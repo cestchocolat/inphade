@@ -22,7 +22,7 @@ export const dictionaries = {
       eyebrow: "",
       headline: "Web Design & Development Built for Growth",
       subheadline:
-        "Inphade designs and develops fast, conversion-focused websites for businesses in Bangkok and across Thailand, combining strategy, design, development and SEO foundations in one build.",
+        "Inphade designs and develops fast, conversion-focused websites for businesses, combining strategy, design, development and SEO foundations in one build.",
       primary: "Get a Free Website Proposal",
       secondary: "View Project"
     },
@@ -159,7 +159,6 @@ export const dictionaries = {
       contact: "Contact",
       services: "Services",
       company: "Company",
-      about: "About",
       process: "Process",
       portfolio: "Project",
       copyright: "© 2026 Inphade. All rights reserved."
@@ -237,26 +236,6 @@ export const dictionaries = {
           title: "เว็บไซต์บริษัท",
           description:
             "สร้างเว็บไซต์องค์กรที่อธิบายบริการ โปรไฟล์บริษัท และช่องทางติดต่ออย่างเป็นระบบ"
-        },
-        {
-          title: "Landing Page",
-          description:
-            "ออกแบบหน้าสำหรับแคมเปญ บริการ หรือข้อเสนอเฉพาะ เพื่อพาผู้เข้าชมไปสู่การติดต่อที่ชัดเจน"
-        },
-        {
-          title: "SEO Foundation",
-          description:
-            "วางโครงสร้าง URL เนื้อหา Metadata Sitemap และพื้นฐานทางเทคนิคให้พร้อมสำหรับการค้นหา"
-        },
-        {
-          title: "Website Maintenance",
-          description:
-            "อัปเดตเนื้อหา แก้ไขปัญหา และดูแลเว็บไซต์ให้พร้อมใช้งานอยู่เสมอ"
-        },
-        {
-          title: "Custom Development",
-          description:
-            "พัฒนาฟังก์ชันเฉพาะตามขอบเขตงาน เช่น ฟอร์ม ระบบเนื้อหา การเชื่อมต่อ หรือโครงสร้างที่ต้องปรับตามธุรกิจ"
         }
       ]
     },
@@ -345,7 +324,6 @@ export const dictionaries = {
       contact: "ติดต่อ",
       services: "บริการ",
       company: "บริษัท",
-      about: "เกี่ยวกับเรา",
       process: "ขั้นตอนการทำงาน",
       portfolio: "โปรเจกต์",
       copyright: "© 2026 Inphade สงวนลิขสิทธิ์"

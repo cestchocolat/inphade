@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { brandLogoPath } from "@/lib/brand";
 import { getDictionary } from "@/lib/i18n";
 import { getLandingPage, siteUrl } from "@/lib/pages";
 import { hasThaiHreflangEquivalent, isEnglishRouteSlug, isThaiRouteSlug, localizePath } from "@/lib/routes";
@@ -40,21 +41,21 @@ export function getPageMetadata(locale: Locale, slug?: RouteSlug): Metadata {
       alternateLocale: locale === "en" && hasThaiAlternate ? [localeMap.th] : locale === "th" && hasEnglishAlternate ? [localeMap.en] : [],
       images: [
         {
-          url: "/brand/inphade-logo.png",
-          width: 1024,
-          height: 1024,
+          url: brandLogoPath,
+          width: 760,
+          height: 760,
           alt: "Inphade logo"
         }
       ]
     },
     other: {
-      "og:logo": "/brand/inphade-logo.png"
+      "og:logo": brandLogoPath
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/brand/inphade-logo.png"]
+      images: [brandLogoPath]
     }
   };
 }

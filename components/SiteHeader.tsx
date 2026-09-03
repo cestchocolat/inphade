@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { BrandLogo } from "@/components/BrandLogo";
 import { getAlternatePath, localizePath } from "@/lib/routes";
 import type { Locale } from "@/lib/routes";
 
@@ -31,23 +31,15 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const navItems = [
     { label: isThai ? "โปรเจกต์" : "Project", href: localizePath(locale, "project") },
     { label: isThai ? "บริการ" : "Services", href: localizePath(locale, "services") },
-    { label: isThai ? "เกี่ยวกับเรา" : "About", href: localizePath(locale, "about") },
     { label: isThai ? "ขั้นตอน" : "Process", href: isThai ? "/th#process" : "/#process" },
     { label: isThai ? "ติดต่อ" : "Contact", href: contactHref }
   ];
 
   return (
     <nav className="glass relative z-20 mx-auto flex max-w-7xl items-center justify-between rounded-full px-4 py-3">
-      <a href={localizePath(locale)} className="flex items-center gap-3" aria-label={isThai ? "หน้าแรก Inphade" : "Inphade home"}>
-        <Image
-          src="/brand/inphade-logo.png"
-          alt="Inphade"
-          width={52}
-          height={52}
-          priority
-          className="h-10 w-10 rounded-md object-contain sm:h-12 sm:w-12"
-        />
-        <span className="text-xl font-semibold tracking-normal text-brandNavy sm:text-2xl">Inphade</span>
+      <a href={localizePath(locale)} className="flex items-center gap-2.5" aria-label={isThai ? "หน้าแรก Inphade" : "Inphade home"}>
+        <BrandLogo width={52} height={52} priority className="h-10 w-10 rounded-md object-contain sm:h-12 sm:w-12" />
+        <span className="text-[17.5px] font-semibold tracking-normal text-brandNavy sm:text-[21px]">Inphade</span>
       </a>
       <div className="hidden items-center gap-7 text-sm font-medium text-muted md:flex">
         {navItems.map((item) => (

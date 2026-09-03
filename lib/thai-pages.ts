@@ -102,34 +102,6 @@ export const thaiPages: Partial<Record<RouteSlug, LandingPage>> = {
     sections: [],
     links: []
   },
-  about: {
-    slug: "about",
-    kind: "company",
-    title: "เกี่ยวกับ Inphade | ออกแบบและพัฒนาเว็บไซต์",
-    description: "ทำความรู้จักแนวทางของ Inphade ในการออกแบบและพัฒนาเว็บไซต์พรีเมียมสำหรับธุรกิจในกรุงเทพและประเทศไทย",
-    h1: "เกี่ยวกับ Inphade",
-    eyebrow: "เกี่ยวกับเรา",
-    intro: "Inphade สร้างเว็บไซต์ธุรกิจที่ช่วยให้แบรนด์สื่อสารชัดเจนขึ้น น่าเชื่อถือขึ้น โหลดเร็วขึ้น และพาผู้เข้าชมไปสู่การติดต่อได้ง่ายขึ้น",
-    cta: "คุยเรื่องเว็บไซต์ของคุณ",
-    ctaNote: "เราจะช่วยดูว่าโปรเจกต์ของคุณควรเริ่มจากดีไซน์ใหม่ พัฒนาเว็บไซต์ รีดีไซน์ หรือการดูแลต่อเนื่อง",
-    sections: [
-      {
-        title: "Our approach",
-        body: "เรามองเว็บไซต์เป็นทั้งเครื่องมือสื่อสารแบรนด์และเครื่องมือธุรกิจ จึงวางโครงสร้างตั้งแต่กลยุทธ์ ดีไซน์ การพัฒนา ไปจนถึงการเติบโตหลังเปิดตัว",
-        items: ["Strategy", "Design", "Development", "Growth"]
-      },
-      {
-        title: "What we care about",
-        body: "เว็บไซต์ที่ดีควรเข้าใจง่าย รวดเร็ว ใช้งานจริงได้ดีบนมือถือ ดูแลต่อได้ และเชื่อมโยงกับผลลัพธ์ทางธุรกิจอย่างชัดเจน",
-        items: ["Clarity", "Performance", "Usability", "Maintainability", "Business outcomes"]
-      }
-    ],
-    links: [
-      { label: "ขั้นตอนการทำงาน", href: "/th#process" },
-      { label: "บริการ", href: "/th/services" },
-      { label: "ติดต่อเรา", href: "/th/contact" }
-    ]
-  },
   "web-design-bangkok": {
     slug: "web-design-bangkok",
     kind: "service",

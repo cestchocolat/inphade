@@ -3,7 +3,7 @@ import { thaiPages } from "@/lib/thai-pages";
 
 export const siteUrl = "https://www.inphade.com";
 
-export type PageKind = "service" | "industry" | "company" | "project" | "contact";
+export type PageKind = "service" | "industry" | "project" | "contact";
 
 export type LandingPage = {
   slug: RouteSlug;
@@ -127,36 +127,6 @@ export const pages: Record<RouteSlug, LandingPage> = {
     ctaNote: "Web Design · Development · Redesign · Custom Builds",
     sections: [],
     links: []
-  },
-  about: {
-    slug: "about",
-    kind: "company",
-    title: "About Inphade | Website Design & Development",
-    description: "Learn about Inphade's approach to premium website design and development for businesses in Bangkok and Thailand.",
-    h1: "Premium Website Design and Development With a Growth Mindset",
-    eyebrow: "About",
-    intro: "Inphade exists to help businesses turn their website into a sharper business asset: clearer positioning, stronger trust, better performance and easier enquiry paths.",
-    cta: "Talk About Your Website",
-    ctaNote: "We will help you decide whether design, development, redesign or ongoing support is the right next move.",
-    sections: [
-      {
-        title: "What Inphade Does",
-        body: "Inphade designs and develops professional websites for businesses that need credibility, speed, mobile usability, search foundations and a clear route from visitor interest to enquiry."
-      },
-      {
-        title: "Who We Serve",
-        body: "Our work is suited to service businesses, real estate teams, clinics, hotels, restaurants, professional services and startups across Bangkok and Thailand."
-      },
-      {
-        title: "How We Work",
-        body: "Projects move through discovery, strategy, design, development, launch and growth so the finished website is considered from both a brand and performance perspective."
-      }
-    ],
-    links: [
-      { label: "Our process", href: "/#process" },
-      { label: "Services", href: "/services" },
-      { label: "Contact", href: "/contact" }
-    ]
   },
   "web-design-bangkok": {
     slug: "web-design-bangkok",

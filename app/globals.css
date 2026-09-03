@@ -111,6 +111,23 @@ button {
   outline-offset: 3px;
 }
 
+@layer utilities {
+  @media (min-width: 1024px) {
+    .desktop-section-y {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .desktop-section-pt {
+      padding-top: 2.5rem;
+    }
+
+    .desktop-section-pb {
+      padding-bottom: 2.5rem;
+    }
+  }
+}
+
 @keyframes mesh-shift {
   from {
     transform: translate3d(0, 0, 0) scale(1);
