@@ -6,7 +6,7 @@ export type { Locale, RouteSlug } from "@/lib/routes";
 export const dictionaries = {
   en: {
     metadata: {
-      title: "Web Design Bangkok | High-Performance Websites | Inphade",
+      title: "Web Design | High-Performance Websites | Inphade",
       description: "Inphade designs and develops high-performance websites for businesses in Bangkok and Thailand. Fast, SEO-ready and built to generate leads."
     },
     nav: {
